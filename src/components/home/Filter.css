@@ -1,0 +1,8 @@
+#filterButton {
+  background-color: gold;
+}
+.Filter .pagination {
+  display: inline-block;
+  width: 33.33%;
+  text-align: center;
+}

@@ -1,0 +1,29 @@
+.Ad {
+  max-width: 225px;
+  box-shadow: 0px 0px 5px 2px white;
+  border-radius: 5px;
+  padding: 5px;
+}
+.Ad p,
+.Ad h2,
+.Ad button {
+  margin: 2.5px 0px;
+}
+
+.Ad .sell,
+.Ad .buy {
+  text-align: right;
+  padding: 2.5px;
+}
+.Ad .sell {
+  background-color: darkgoldenrod;
+}
+
+.Ad .buy {
+  background-color: plum;
+}
+.Ad img {
+  width: calc(100% - 10px);
+  padding: 5px 5px 0px 5px;
+  min-height: 100px;
+}
