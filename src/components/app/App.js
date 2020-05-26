@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Register from './components/register/Register';
-import Login from './components/login/Login';
-import Home from './components/home/Home';
-import Detail from './components/detail/Detail';
-import Update from './components/edit/Update';
-import Create from './components/edit/Create';
+import Register from '../register/Register';
+import Login from '../login/Login';
+import Home from '../home/Home';
+import Detail from '../detail/Detail';
+import Update from '../edit/Update';
+import Create from '../edit/Create';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
