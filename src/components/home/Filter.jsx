@@ -1,8 +1,6 @@
 import React from 'react';
 import './Filter.css';
-
 import config from '../../config';
-import { getAds, createURLQuery } from '../../services/API';
 
 const { AD_LIMIT_PER_PAGE } = config;
 
@@ -61,10 +59,7 @@ class Filter extends React.Component {
   };
 
   loadAds = () => {
-    const query = createURLQuery({ ...this.state });
-    getAds(query).then((result) => {
-      this.props.onSubmit(result);
-    });
+    this.props.loadAds({ ...this.state });
   };
 
   handleSubmit = (event) => {
@@ -81,7 +76,7 @@ class Filter extends React.Component {
   };
 
   render() {
-    const loadedTags = this.props.tags;
+    const loadedTags = this.props.tags.filter((tag) => tag);
 
     const page = this.state.skip
       ? (Number(this.state.skip) + 15) / this.state.limit
@@ -142,10 +137,13 @@ class Filter extends React.Component {
           onChange={this.handleInput}
           name="tag"
         >
+          <option key={null} value={''}>
+            {'Select a Tag'}
+          </option>
           {loadedTags.map((tag) => {
             return (
               <option key={tag} value={tag ? tag : ''}>
-                {tag ? tag : 'Select a Tag'}
+                {tag}
               </option>
             );
           })}

@@ -1,4 +1,5 @@
 import * as ACTION_TYPES from './actionTypes';
+import { combineReducers } from 'redux';
 
 const initialState = {
   ads: [],
@@ -18,22 +19,22 @@ const updateAd = (ads, newAd) => {
     return ad;
   });
 };
-export function ads(state = initialState.ads, action) {
+function ads(state = initialState.ads, action) {
   switch (action.type) {
-    case ACTION_TYPES.FETCH_GET_ADS_REQUEST:
+    case ACTION_TYPES.FETCH_ADS_SUCCESS:
       return action.ads;
 
-    case ACTION_TYPES.FETCH_CREATE_AD_REQUEST:
+    case ACTION_TYPES.CREATE_AD_SUCCESS:
       return state.push(action.ad);
 
-    case ACTION_TYPES.FETCH_UPDATE_AD_REQUEST:
+    case ACTION_TYPES.UPDATE_AD_SUCCESS:
       return updateAd(state, action.ad);
 
     default:
       return state;
   }
 }
-export function login(state = initialState.login, action) {
+function login(state = initialState.login, action) {
   switch (action.type) {
     case ACTION_TYPES.SIGN_IN_SUCCESS:
       return {
@@ -45,3 +46,10 @@ export function login(state = initialState.login, action) {
       return state;
   }
 }
+
+const rootReducer = combineReducers({
+  ads,
+  login,
+});
+
+export default rootReducer;

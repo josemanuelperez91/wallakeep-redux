@@ -1,7 +1,7 @@
 import config from '../config';
 const _ = require('lodash');
 
-export function createURLQuery(params) {
+function createURLQuery(params) {
   if (params.min || params.max) params.price = `${params.min}-${params.max}`;
 
   params = _.omit(params, 'max', 'min');
@@ -53,7 +53,9 @@ export function getTags() {
     });
 }
 
-export function getAds(query) {
+export function getAds(params) {
+  const query = createURLQuery(params);
+
   return fetch(query, {
     method: 'get',
     credentials: 'include',

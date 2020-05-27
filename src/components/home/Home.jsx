@@ -1,13 +1,12 @@
 import React from 'react';
 import './Home.css';
-import Filter from './Filter';
-import AdsGrid from './AdsGrid';
+import Filter from './connectedFilter';
+import AdsGrid from './connectedAdsGrid';
 import { Link } from 'react-router-dom';
 import { getTags } from '../../services/API';
 
 class Home extends React.Component {
   state = {
-    ads: null,
     tags: [],
   };
 
@@ -35,17 +34,17 @@ class Home extends React.Component {
   };
 
   onFilter = (result) => {
-    if (result.success) {
-      this.setState({
-        ads: result.results,
-      });
-    } else {
-      if (result.error === 'Error: Not logged in') {
-        this.props.history.push('/login');
-      } else {
-        console.error(result.error);
-      }
-    }
+    // if (result.success) {
+    //   this.setState({
+    //     ads: result.results,
+    //   });
+    // } else {
+    //   if (result.error === 'Error: Not logged in') {
+    //     this.props.history.push('/login');
+    //   } else {
+    //     console.error(result.error);
+    //   }
+    // }
   };
 
   render() {
@@ -58,7 +57,7 @@ class Home extends React.Component {
         <button id="createAd" className="greenButton">
           <Link to="create">New Ad</Link>
         </button>
-        <AdsGrid ads={this.state.ads}></AdsGrid>
+        <AdsGrid></AdsGrid>
       </div>
     );
   }

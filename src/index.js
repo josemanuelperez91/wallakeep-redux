@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/app/App';
-import APIService from './services/API';
+import APIService from './services';
 
 import * as serviceWorker from './serviceWorker';
 
-// import { configureStore } from './store';
+import { configureStore } from './store';
 
 const store = configureStore({ APIService })();
 

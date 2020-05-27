@@ -1,17 +1,14 @@
-export const FETCH_GET_ADS_REQUEST = 'wallakeep/Home/FETCH_GET_ADS_REQUEST';
-export const FETCH_GET_ADS_SUCCESS = 'wallakeep/Home/FETCH_GET_ADS_SUCCESS';
-export const FETCH_GET_ADS_FAILURE = 'wallakeep/Home/FETCH_GET_ADS_FAILURE';
+export const FETCH_ADS_REQUEST = 'wallakeep/Home/FETCH_ADS_REQUEST';
+export const FETCH_ADS_SUCCESS = 'wallakeep/Home/FETCH_ADS_SUCCESS';
+export const FETCH_ADS_FAILURE = 'wallakeep/Home/FETCH_ADS_FAILURE';
 
-export const FETCH_CREATE_AD_REQUEST = 'wallakeep/Create/FETCH_ADS_REQUEST';
-export const FETCH_CREATE_AD_SUCCESS = 'wallakeep/Create/FETCH_ADS_SUCCESS';
-export const FETCH_CREATE_AD_FAILURE = 'wallakeep/Create/FETCH_ADS_FAILURE';
+export const CREATE_AD_REQUEST = 'wallakeep/Create/CREATE_AD_REQUEST';
+export const CREATE_AD_SUCCESS = 'wallakeep/Create/CREATE_AD_SUCCESS';
+export const CREATE_AD_FAILURE = 'wallakeep/Create/CREATE_AD_FAILURE';
 
-export const FETCH_UPDATE_AD_REQUEST =
-  'wallakeep/Update/FETCH_UPDATE_AD_REQUEST';
-export const FETCH_UPDATE_AD_SUCCESS =
-  'wallakeep/Update/FETCH_UPDATE_AD_SUCCESS';
-export const FETCH_UPDATE_AD_FAILURE =
-  'wallakeep/Update/FETCH_UPDATE_AD_FAILURE';
+export const UPDATE_AD_REQUEST = 'wallakeep/Update/UPDATE_AD_REQUEST';
+export const UPDATE_AD_SUCCESS = 'wallakeep/Update/UPDATE_AD_SUCCESS';
+export const UPDATE_AD_FAILURE = 'wallakeep/Update/UPDATE_AD_FAILURE';
 
 export const SIGN_IN_REQUEST = 'wallakeep/Login/SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = 'wallakeep/Login/SIGN_IN_SUCCESS';
