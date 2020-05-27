@@ -1,13 +1,13 @@
 import React from 'react';
 import './Edit.css';
 import Form from './Form';
-import { putAd } from '../../js/apiCalls';
+import { putAd } from '../../services/API';
 import { Link } from 'react-router-dom';
 
 class Update extends React.Component {
-  onUpdate = adData => {
+  onUpdate = (adData) => {
     const adIdentifier = this.props.match.params.ID;
-    putAd(adIdentifier, adData).then(response => {
+    putAd(adIdentifier, adData).then((response) => {
       if (response.ok) {
         this.props.history.push('/home');
       }

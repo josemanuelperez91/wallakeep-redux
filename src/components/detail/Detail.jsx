@@ -1,6 +1,6 @@
 import React from 'react';
 import './Detail.css';
-import { getAdDetails } from '../../js/apiCalls';
+import { getAdDetails } from '../../services/API';
 import { Link } from 'react-router-dom';
 const _ = require('lodash');
 
@@ -8,15 +8,15 @@ class Detail extends React.Component {
   constructor() {
     super();
     this.state = {
-      adData: {}
+      adData: {},
     };
   }
   componentDidMount() {
     const ID = this.props.match.params.ID;
-    getAdDetails(ID).then(result => {
+    getAdDetails(ID).then((result) => {
       if (result.success) {
         this.setState({
-          adData: result.result
+          adData: result.result,
         });
       } else {
         if (result.error === 'Error: Not logged in') {
@@ -43,7 +43,7 @@ class Detail extends React.Component {
           <p id="description">{loadedAdData.description}</p>
           Tags:
           <ul>
-            {loadedAdData.tags.map(tag => {
+            {loadedAdData.tags.map((tag) => {
               return <li>{tag}</li>;
             })}
           </ul>

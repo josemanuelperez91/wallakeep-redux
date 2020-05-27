@@ -1,25 +1,25 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { signIn } from '../../js/apiCalls';
+import { signIn } from '../../services/API';
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
     };
   }
 
-  handleInput = event => {
+  handleInput = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
-    signIn({ ...this.state }).then(response => {
+    signIn({ ...this.state }).then((response) => {
       if (response.ok) {
         this.props.history.push('/home');
       }

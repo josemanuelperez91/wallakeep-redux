@@ -1,12 +1,12 @@
 import React from 'react';
 import './Edit.css';
 import Form from './Form';
-import { postAd } from '../../js/apiCalls';
+import { postAd } from '../../services/API';
 import { Link } from 'react-router-dom';
 
 class Create extends React.Component {
-  onCreate = adData => {
-    postAd(adData).then(response => {
+  onCreate = (adData) => {
+    postAd(adData).then((response) => {
       if (response.ok) {
         this.props.history.push('/home');
       }

@@ -3,12 +3,12 @@ import './Home.css';
 import Filter from './Filter';
 import AdsGrid from './AdsGrid';
 import { Link } from 'react-router-dom';
-import { getTags } from '../../js/apiCalls';
+import { getTags } from '../../services/API';
 
 class Home extends React.Component {
   state = {
     ads: null,
-    tags: []
+    tags: [],
   };
 
   /**
@@ -22,9 +22,9 @@ class Home extends React.Component {
     this.controller.abort();
   }
   componentDidMount() {
-    getTags().then(result => {
+    getTags().then((result) => {
       this.setState({
-        tags: result.results
+        tags: result.results,
       });
     });
   }
@@ -34,10 +34,10 @@ class Home extends React.Component {
     this.props.history.push('/login');
   };
 
-  onFilter = result => {
+  onFilter = (result) => {
     if (result.success) {
       this.setState({
-        ads: result.results
+        ads: result.results,
       });
     } else {
       if (result.error === 'Error: Not logged in') {

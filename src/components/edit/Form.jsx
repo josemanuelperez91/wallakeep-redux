@@ -1,5 +1,5 @@
 import React from 'react';
-import { getTags, getAdDetails } from '../../js/apiCalls';
+import { getTags, getAdDetails } from '../../services/API';
 
 class Form extends React.Component {
   constructor() {
@@ -11,18 +11,18 @@ class Form extends React.Component {
         photo: '',
         type: 'sell',
         tags: [],
-        description: ''
+        description: '',
       },
-      tags: []
+      tags: [],
     };
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit(this.state.adData);
   };
 
-  handleInput = event => {
+  handleInput = (event) => {
     let dataValue = event.target.value;
     if (event.target.name === 'price') {
       dataValue = Number(dataValue);
@@ -30,23 +30,23 @@ class Form extends React.Component {
     this.setState({
       adData: {
         ...this.state.adData,
-        [event.target.name]: dataValue
-      }
+        [event.target.name]: dataValue,
+      },
     });
   };
 
-  handleTagSelection = event => {
+  handleTagSelection = (event) => {
     this.setState({
       adData: {
         ...this.state.adData,
-        tags: Array.from(event.target.selectedOptions, item => item.value)
-      }
+        tags: Array.from(event.target.selectedOptions, (item) => item.value),
+      },
     });
   };
 
   componentDidMount() {
     if (this.props.adIdentifier) {
-      getAdDetails(this.props.adIdentifier).then(result => {
+      getAdDetails(this.props.adIdentifier).then((result) => {
         if (result.success) {
           const resultData = result.result;
           const adDataLoaded = {
@@ -55,11 +55,11 @@ class Form extends React.Component {
             photo: resultData.photo,
             type: resultData.type,
             tags: resultData.tags,
-            description: resultData.description
+            description: resultData.description,
           };
 
           this.setState({
-            adData: adDataLoaded
+            adData: adDataLoaded,
           });
         } else {
           if (result.error === 'Error: Not logged in') {
@@ -70,9 +70,9 @@ class Form extends React.Component {
         }
       });
     }
-    getTags().then(result => {
+    getTags().then((result) => {
       this.setState({
-        tags: result.results
+        tags: result.results,
       });
     });
   }
@@ -117,10 +117,10 @@ class Form extends React.Component {
           onChange={this.handleTagSelection}
           name="tag"
         >
-          {loadedTags.map(tag => {
+          {loadedTags.map((tag) => {
             return (
               <option
-                selected={this.state.adData.tags.find(selectedTag =>
+                selected={this.state.adData.tags.find((selectedTag) =>
                   selectedTag === tag ? 'selected' : ''
                 )}
                 key={tag}

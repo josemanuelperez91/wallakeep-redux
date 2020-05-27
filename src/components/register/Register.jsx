@@ -1,5 +1,5 @@
 import React from 'react';
-import { signUp } from '../../js/apiCalls';
+import { signUp } from '../../services/API';
 import { withRouter, Link } from 'react-router-dom';
 
 class Register extends React.Component {
@@ -7,17 +7,17 @@ class Register extends React.Component {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
     };
   }
 
-  handleInput = event => {
+  handleInput = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  handleRepeatPassword = event => {
+  handleRepeatPassword = (event) => {
     if (event.target.value !== this.state.password) {
       event.target.setCustomValidity('Passwords must match');
     } else {
@@ -25,10 +25,10 @@ class Register extends React.Component {
     }
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
-    signUp({ ...this.state }).then(response => {
+    signUp({ ...this.state }).then((response) => {
       if (response.ok) {
         this.props.history.push('/login');
       }

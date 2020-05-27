@@ -1,8 +1,10 @@
 import React from 'react';
 import './Filter.css';
 
-import { AD_LIMIT_PER_PAGE } from '../../constants/appConstants';
-import { getAds, createURLQuery } from '../../js/apiCalls';
+import config from '../../config';
+import { getAds, createURLQuery } from '../../services/API';
+
+const { AD_LIMIT_PER_PAGE } = config;
 
 class Filter extends React.Component {
   constructor() {
@@ -15,7 +17,7 @@ class Filter extends React.Component {
       venta: '',
       limit: AD_LIMIT_PER_PAGE,
       skip: '',
-      filterIsChanged: false
+      filterIsChanged: false,
     };
   }
 
@@ -29,7 +31,7 @@ class Filter extends React.Component {
 
     this.setState(
       {
-        skip: String(currentSkip)
+        skip: String(currentSkip),
       },
       () => this.loadAds()
     );
@@ -39,7 +41,7 @@ class Filter extends React.Component {
     const currentSkip = this.state.skip || 0;
     this.setState(
       {
-        skip: String(Number(currentSkip) + 15)
+        skip: String(Number(currentSkip) + 15),
       },
       () => {
         this.loadAds();
@@ -51,26 +53,26 @@ class Filter extends React.Component {
     this.loadAds();
   }
 
-  handleInput = event => {
+  handleInput = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
-      filterIsChanged: true
+      filterIsChanged: true,
     });
   };
 
   loadAds = () => {
     const query = createURLQuery({ ...this.state });
-    getAds(query).then(result => {
+    getAds(query).then((result) => {
       this.props.onSubmit(result);
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.setState(
       {
         skip: '',
-        filterIsChanged: false
+        filterIsChanged: false,
       },
       () => {
         this.loadAds();
@@ -140,7 +142,7 @@ class Filter extends React.Component {
           onChange={this.handleInput}
           name="tag"
         >
-          {loadedTags.map(tag => {
+          {loadedTags.map((tag) => {
             return (
               <option key={tag} value={tag ? tag : ''}>
                 {tag ? tag : 'Select a Tag'}

@@ -1,4 +1,4 @@
-import * as URLS from '../constants/apiURLs';
+import config from '../config';
 const _ = require('lodash');
 
 export function createURLQuery(params) {
@@ -7,41 +7,41 @@ export function createURLQuery(params) {
   params = _.omit(params, 'max', 'min');
   params = _.omitBy(params, _.isEmpty);
 
-  let url = new URL(URLS.ANUNCIOS);
+  const url = new URL(config.ADS);
   url.search = new URLSearchParams(params);
   return url;
 }
 
 export function signIn(body) {
-  return fetch(URLS.LOGIN, {
+  return fetch(config.LOGIN, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     method: 'post',
     body: JSON.stringify(body),
-    credentials: 'include'
+    credentials: 'include',
   }).catch(() => {
     console.error('API Error');
   });
 }
 export function signUp(body) {
-  return fetch(URLS.REGISTER, {
+  return fetch(config.REGISTER, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     method: 'post',
     body: JSON.stringify(body),
-    credentials: 'include'
+    credentials: 'include',
   }).catch(() => {
     console.error('API Error');
   });
 }
 
 export function getTags() {
-  return fetch(URLS.TAGS, {
-    method: 'get'
+  return fetch(config.TAGS, {
+    method: 'get',
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error();
       }
@@ -56,9 +56,9 @@ export function getTags() {
 export function getAds(query) {
   return fetch(query, {
     method: 'get',
-    credentials: 'include'
+    credentials: 'include',
   })
-    .then(response => {
+    .then((response) => {
       return response.json();
     })
     .catch(() => {
@@ -67,11 +67,11 @@ export function getAds(query) {
 }
 
 export function getAdDetails(id) {
-  return fetch(`${URLS.ANUNCIOS}/${id}`, {
+  return fetch(`${config.ADS}/${id}`, {
     method: 'get',
-    credentials: 'include'
+    credentials: 'include',
   })
-    .then(response => {
+    .then((response) => {
       return response.json();
     })
     .catch(() => {
@@ -79,26 +79,26 @@ export function getAdDetails(id) {
     });
 }
 export function postAd(body) {
-  return fetch(URLS.ANUNCIOS, {
+  return fetch(config.ADS, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     method: 'post',
     body: JSON.stringify(body),
-    credentials: 'include'
+    credentials: 'include',
   }).catch(() => {
     console.error('API Error');
   });
 }
 export function putAd(id, body) {
-  const putURL = `${URLS.ANUNCIOS}/${id}`;
+  const putURL = `${config.ADS}/${id}`;
   return fetch(putURL, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     method: 'put',
     body: JSON.stringify(body),
-    credentials: 'include'
+    credentials: 'include',
   }).catch(() => {
     console.error('API Error');
   });
