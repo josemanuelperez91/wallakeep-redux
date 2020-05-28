@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { signIn } from '../../services/API';
 class Login extends React.Component {
   constructor() {
     super();
@@ -18,12 +17,7 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
-    signIn({ ...this.state }).then((response) => {
-      if (response.ok) {
-        this.props.history.push('/home');
-      }
-    });
+    this.props.signIn({ ...this.state });
   };
   render() {
     return (

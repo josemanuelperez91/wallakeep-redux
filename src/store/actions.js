@@ -1,6 +1,7 @@
 import * as ACTION_TYPES from './actionTypes';
 
 import APIService from '../services';
+import history from '../history';
 
 export const fetchAdsReq = () => ({
   type: ACTION_TYPES.FETCH_ADS_REQUEST,
@@ -43,7 +44,8 @@ export const createAd = (newAdData) =>
     dispatch(createAdReq());
     try {
       const postedAd = await APIService.postAd(newAdData);
-      dispatch(createAdSuccess(postedAd));
+      dispatch(createAdSuccess(postedAd.result));
+      history.push('/home');
     } catch (error) {
       dispatch(createAdFail(error));
     }
@@ -66,7 +68,8 @@ export const updateAd = (adId, newAdData) =>
     dispatch(updateAdReq());
     try {
       const updatedAd = await APIService.putAd(adId, newAdData);
-      dispatch(updateAdSuccess(updatedAd));
+      dispatch(updateAdSuccess(updatedAd.result));
+      history.push('/home');
     } catch (error) {
       dispatch(updateAdFail(error));
     }
@@ -84,36 +87,38 @@ export const signInFail = (error) => ({
   error,
 });
 
-export const sigIn = (sigInData) =>
+export const signIn = (signInData) =>
   async function (dispatch) {
     dispatch(signInReq());
     try {
-      await APIService.signIn(sigInData);
-      dispatch(signInSuccess(sigInData.username));
+      await APIService.signIn(signInData);
+      dispatch(signInSuccess());
+      history.push('/home');
     } catch (error) {
       dispatch(signInFail(error));
     }
   };
 
-export const signUpReq = () => ({
-  type: ACTION_TYPES.SIGN_UP_REQUEST,
-});
-export const signUpSuccess = (username) => ({
-  type: ACTION_TYPES.SIGN_UP_SUCCESS,
-  username,
-});
-export const signUpFail = (error) => ({
-  type: ACTION_TYPES.SIGN_UP_FAILURE,
-  error,
-});
+// export const signUpReq = () => ({
+//   type: ACTION_TYPES.SIGN_UP_REQUEST,
+// });
+// export const signUpSuccess = (username) => ({
+//   type: ACTION_TYPES.SIGN_UP_SUCCESS,
+//   username,
+// });
+// export const signUpFail = (error) => ({
+//   type: ACTION_TYPES.SIGN_UP_FAILURE,
+//   error,
+// });
 
-export const sigUp = (sigUpData) =>
-  async function (dispatch) {
-    dispatch(signUpReq());
-    try {
-      await APIService.signUp(sigUpData);
-      dispatch(signUpSuccess(sigUpData.username));
-    } catch (error) {
-      dispatch(signUpFail(error));
-    }
-  };
+// export const signUp = (signUpData) =>
+//   async function (dispatch) {
+//     dispatch(signUpReq());
+//     try {
+//       await APIService.signUp(signUpData);
+//       dispatch(signUpSuccess());
+//       history.push('/login');
+//     } catch (error) {
+//       dispatch(signUpFail(error));
+//     }
+//   };

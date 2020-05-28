@@ -88,9 +88,13 @@ export function postAd(body) {
     method: 'post',
     body: JSON.stringify(body),
     credentials: 'include',
-  }).catch(() => {
-    console.error('API Error');
-  });
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch(() => {
+      console.error('API Error');
+    });
 }
 export function putAd(id, body) {
   const putURL = `${config.ADS}/${id}`;
@@ -101,7 +105,11 @@ export function putAd(id, body) {
     method: 'put',
     body: JSON.stringify(body),
     credentials: 'include',
-  }).catch(() => {
-    console.error('API Error');
-  });
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch(() => {
+      console.error('API Error');
+    });
 }

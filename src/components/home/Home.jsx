@@ -33,20 +33,6 @@ class Home extends React.Component {
     this.props.history.push('/login');
   };
 
-  onFilter = (result) => {
-    // if (result.success) {
-    //   this.setState({
-    //     ads: result.results,
-    //   });
-    // } else {
-    //   if (result.error === 'Error: Not logged in') {
-    //     this.props.history.push('/login');
-    //   } else {
-    //     console.error(result.error);
-    //   }
-    // }
-  };
-
   render() {
     return (
       <div className="Home">

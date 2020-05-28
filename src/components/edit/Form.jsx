@@ -78,7 +78,7 @@ class Form extends React.Component {
   }
 
   render() {
-    const loadedTags = this.state.tags;
+    const loadedTags = this.state.tags.filter((tag) => tag);
 
     return (
       <form className="Form" onSubmit={this.handleSubmit}>
@@ -116,18 +116,16 @@ class Form extends React.Component {
           multiple="multiple"
           onChange={this.handleTagSelection}
           name="tag"
+          value={this.state.adData.tags.map((tag) => tag)}
         >
+          <option key={null} disabled="disabled" value="">
+            {'Select one or more Tags'}
+          </option>
+
           {loadedTags.map((tag) => {
             return (
-              <option
-                selected={this.state.adData.tags.find((selectedTag) =>
-                  selectedTag === tag ? 'selected' : ''
-                )}
-                key={tag}
-                disabled={tag ? '' : 'disabled'}
-                value={tag ? tag : ''}
-              >
-                {tag ? tag : 'Select one or more Tags'}
+              <option key={tag} value={tag}>
+                {tag}
               </option>
             );
           })}

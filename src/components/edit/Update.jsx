@@ -1,17 +1,11 @@
 import React from 'react';
 import './Edit.css';
 import Form from './Form';
-import { putAd } from '../../services/API';
 import { Link } from 'react-router-dom';
 
 class Update extends React.Component {
   onUpdate = (adData) => {
-    const adIdentifier = this.props.match.params.ID;
-    putAd(adIdentifier, adData).then((response) => {
-      if (response.ok) {
-        this.props.history.push('/home');
-      }
-    });
+    this.props.updateAd(adData);
   };
 
   render() {
@@ -22,7 +16,7 @@ class Update extends React.Component {
           adIdentifier={this.props.match.params.ID}
         ></Form>
         <button>
-          <Link to="/home">Back</Link>
+          <Link to="/home">Home</Link>
         </button>
       </div>
     );
