@@ -29,7 +29,7 @@ function App({ store, ...props }) {
             <Route path="/create" component={Create} />
 
             <Route>
-              <Register />
+              <Login />
             </Route>
           </Switch>
         </div>

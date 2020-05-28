@@ -3,7 +3,10 @@ import { combineReducers } from 'redux';
 
 const initialState = {
   ads: [],
-  isLoggedIn: false,
+  login: {
+    username: '',
+    isLoggedIn: false,
+  },
 };
 
 const updateAd = (ads, newAd) => {
@@ -33,12 +36,19 @@ function ads(state = initialState.ads, action) {
       return state;
   }
 }
-function isLoggedIn(state = initialState.isLoggedIn, action) {
+function login(state = initialState.login, action) {
   switch (action.type) {
     case ACTION_TYPES.SIGN_IN_SUCCESS:
-      return true;
+      console.log(action);
+      return {
+        username: action.username,
+        isLogged: true,
+      };
     case ACTION_TYPES.SIGN_OUT:
-      return false;
+      return {
+        ...state,
+        isLogged: false,
+      };
     default:
       return state;
   }
@@ -56,7 +66,7 @@ function isLoggedIn(state = initialState.isLoggedIn, action) {
 
 const rootReducer = combineReducers({
   ads,
-  isLoggedIn,
+  login,
 });
 
 export default rootReducer;

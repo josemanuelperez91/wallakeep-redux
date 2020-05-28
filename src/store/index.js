@@ -8,6 +8,7 @@ export function configureStore(config) {
   return function (preloadedState) {
     const store = createStore(
       rootReducer,
+      preloadedState,
       composeWithDevTools(applyMiddleware(thunk))
     );
     return store;

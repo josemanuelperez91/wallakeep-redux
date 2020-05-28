@@ -92,7 +92,9 @@ export const signIn = (signInData) =>
     dispatch(signInReq());
     try {
       await APIService.signIn(signInData);
-      dispatch(signInSuccess());
+      dispatch(signInSuccess(signInData.username));
+      localStorage.setItem('username', signInData.username);
+      localStorage.setItem('isLoggedIn', true);
       history.push('/home');
     } catch (error) {
       dispatch(signInFail(error));
@@ -104,30 +106,6 @@ export const signOut = () =>
     dispatch({
       type: ACTION_TYPES.SIGN_OUT,
     });
-
+    localStorage.setItem('isLoggedIn', false);
     history.push('/login');
   };
-
-// export const signUpReq = () => ({
-//   type: ACTION_TYPES.SIGN_UP_REQUEST,
-// });
-// export const signUpSuccess = (username) => ({
-//   type: ACTION_TYPES.SIGN_UP_SUCCESS,
-//   username,
-// });
-// export const signUpFail = (error) => ({
-//   type: ACTION_TYPES.SIGN_UP_FAILURE,
-//   error,
-// });
-
-// export const signUp = (signUpData) =>
-//   async function (dispatch) {
-//     dispatch(signUpReq());
-//     try {
-//       await APIService.signUp(signUpData);
-//       dispatch(signUpSuccess());
-//       history.push('/login');
-//     } catch (error) {
-//       dispatch(signUpFail(error));
-//     }
-//   };

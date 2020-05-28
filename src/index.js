@@ -8,7 +8,23 @@ import * as serviceWorker from './serviceWorker';
 
 import { configureStore } from './store';
 
-const store = configureStore({ APIService })();
+let username = localStorage.getItem('username');
+let isLoggedIn = localStorage.getItem('isLoggedIn');
+
+if (username === null) username = '';
+if (isLoggedIn === null) {
+  isLoggedIn = false;
+} else {
+  isLoggedIn = isLoggedIn === 'true';
+}
+
+const preloadedState = {
+  login: {
+    username,
+    isLoggedIn,
+  },
+};
+const store = configureStore({ APIService })(preloadedState);
 
 ReactDOM.render(<App store={store} />, document.getElementById('root'));
 

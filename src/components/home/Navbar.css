@@ -2,4 +2,10 @@
   background-color: maroon;
   color: white;
   width: fit-content;
+  display: inline-block;
+}
+#user {
+  background-color: white;
+  width: fit-content;
+  float: right;
 }
