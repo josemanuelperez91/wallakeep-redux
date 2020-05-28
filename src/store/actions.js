@@ -99,6 +99,15 @@ export const signIn = (signInData) =>
     }
   };
 
+export const signOut = () =>
+  async function (dispatch) {
+    dispatch({
+      type: ACTION_TYPES.SIGN_OUT,
+    });
+
+    history.push('/login');
+  };
+
 // export const signUpReq = () => ({
 //   type: ACTION_TYPES.SIGN_UP_REQUEST,
 // });

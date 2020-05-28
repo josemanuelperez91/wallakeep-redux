@@ -2,6 +2,8 @@ import React from 'react';
 import './Home.css';
 import Filter from './connectedFilter';
 import AdsGrid from './connectedAdsGrid';
+import Navbar from './connectedNavbar';
+
 import { Link } from 'react-router-dom';
 import { getTags } from '../../services/API';
 
@@ -28,17 +30,11 @@ class Home extends React.Component {
     });
   }
 
-  signOut = () => {
-    /** Delete cookies here */
-    this.props.history.push('/login');
-  };
-
   render() {
     return (
       <div className="Home">
-        <button id="signOut" onClick={this.signOut}>
-          Sign Out
-        </button>
+        <Navbar></Navbar>
+
         <Filter tags={this.state.tags} onSubmit={this.onFilter}></Filter>
         <button id="createAd" className="greenButton">
           <Link to="create">New Ad</Link>
