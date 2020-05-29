@@ -62,11 +62,7 @@ class Form extends React.Component {
             adData: adDataLoaded,
           });
         } else {
-          if (result.error === 'Error: Not logged in') {
-            this.props.history.push('/login');
-          } else {
-            console.error(result.error);
-          }
+          console.error(result.error);
         }
       });
     }

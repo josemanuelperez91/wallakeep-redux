@@ -1,62 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Detail.css';
 import { getAdDetails } from '../../services/API';
 import { Link } from 'react-router-dom';
 const _ = require('lodash');
 
-class Detail extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      adData: {},
-    };
-  }
-  componentDidMount() {
-    const ID = this.props.match.params.ID;
-    getAdDetails(ID).then((result) => {
-      if (result.success) {
-        this.setState({
-          adData: result.result,
-        });
+export default function Detail({
+  match: {
+    params: { ID },
+  },
+}) {
+  const [adData, setAdData] = useState('');
+
+  useEffect(() => {
+    getAdDetails(ID).then((response) => {
+      if (response.success) {
+        setAdData(response.result);
       } else {
-        if (result.error === 'Error: Not logged in') {
-          this.props.history.push('/login');
-        } else {
-          console.error(result.error);
-        }
+        console.error(response.error);
       }
     });
-  }
-  render() {
-    const loadedAdData = this.state.adData;
+  }, [ID]);
 
-    if (!_.isEmpty(loadedAdData)) {
-      const createDate = new Date(loadedAdData.createdAt).toLocaleString();
-      const updateDate = new Date(loadedAdData.updatedAt).toLocaleString();
+  if (!_.isEmpty(adData)) {
+    const createDate = new Date(adData.createdAt).toLocaleString();
+    const updateDate = new Date(adData.updatedAt).toLocaleString();
 
-      return (
-        <div className="Detail">
-          <h1>{loadedAdData.name}</h1>
-          <img alt={loadedAdData.name} src={loadedAdData.photo} />
-          <p>Type: {loadedAdData.type}</p>
-          <p>Price: {loadedAdData.price} €</p>
-          <p id="description">{loadedAdData.description}</p>
-          Tags:
-          <ul>
-            {loadedAdData.tags.map((tag) => {
-              return <li>{tag}</li>;
-            })}
-          </ul>
-          <p>Created: {createDate}</p>
-          <p>Last update: {updateDate}</p>
-          <button>
-            <Link to="/home">Back</Link>
-          </button>
-        </div>
-      );
-    } else {
-      return <div className="Detail">LOADING AD...</div>;
-    }
+    return (
+      <div className="Detail">
+        <h1>{adData.name}</h1>
+        <img alt={adData.name} src={adData.photo} />
+        <p>Type: {adData.type}</p>
+        <p>Price: {adData.price} €</p>
+        <p id="description">{adData.description}</p>
+        Tags:
+        <ul>
+          {adData.tags.map((tag) => {
+            return <li key={tag}>{tag}</li>;
+          })}
+        </ul>
+        <p>Created: {createDate}</p>
+        <p>Last update: {updateDate}</p>
+        <button>
+          <Link to="/home">Back</Link>
+        </button>
+      </div>
+    );
+  } else {
+    return <div className="Detail">LOADING AD...</div>;
   }
 }
-export default Detail;
