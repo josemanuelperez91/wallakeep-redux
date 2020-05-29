@@ -1,51 +1,30 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-class Login extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
 
-  handleInput = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+import Form from './Form';
+import Input from './Input';
+import Button from './Button';
+
+function Login({ signIn }) {
+  const onSubmit = (formData) => {
+    signIn(formData);
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.signIn({ ...this.state });
-  };
-  render() {
-    return (
-      <div className="Login">
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            name="username"
-            onChange={this.handleInput}
-            placeholder="username"
-            type="text"
-          />
-          <input
-            autoComplete="password"
-            name="password"
-            onChange={this.handleInput}
-            placeholder="password"
-            type="password"
-          />
-          <button className="greenButton" type="submit">
-            Sign In
-          </button>
-          <button type="button">
-            <Link to="/register">I dont have an accout</Link>
-          </button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="Login">
+      <h1>Login</h1>
+      <Form initialValue={{ username: '', password: '' }} onSubmit={onSubmit}>
+        <Input type="text" name="username" placeholder="User Name"></Input>
+        <Input type="password" name="password" placeholder="Password"></Input>
+        <Button className="greenButton" type="submit">
+          Sign In
+        </Button>
+      </Form>
+
+      <button type="button">
+        <Link to="/register">I dont have an accout</Link>
+      </button>
+    </div>
+  );
 }
 export default withRouter(Login);

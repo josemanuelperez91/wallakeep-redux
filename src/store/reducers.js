@@ -39,7 +39,6 @@ function ads(state = initialState.ads, action) {
 function login(state = initialState.login, action) {
   switch (action.type) {
     case ACTION_TYPES.SIGN_IN_SUCCESS:
-      console.log(action);
       return {
         username: action.username,
         isLogged: true,
