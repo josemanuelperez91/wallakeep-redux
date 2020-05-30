@@ -102,7 +102,7 @@ export const signIn = (signInData) =>
   };
 
 export const signOut = () =>
-  async function (dispatch) {
+  function (dispatch) {
     dispatch({
       type: ACTION_TYPES.SIGN_OUT,
     });
