@@ -5,7 +5,7 @@ following API
 
     http://34.89.93.186:8080/apiv1/
 
-(Para apuntes sobre el desarrollo de la práctica ver [apuntes](apuntes.md))
+(Para apuntes sobre el desarrollo de la práctica ver [apuntes](./apuntes.md))
 
 ## Download
 
