@@ -2,15 +2,17 @@
 
 ## Información sobre la sesión o el usuario registrado en el sistema
 
-La pantalla que almacena el store de usuario es Login. Guarda un booleano que indica si el usuario se ha logueado o no y un valor de usuario (nombre). La pantalla Register unicamente tiene funciones de creación de usuario en el lado del servidor por lo que no lo he añadido al redux.
+En la práctica de React no había que crear ninguna pantalla de usuario por lo que únicamente se almacena en el store el username para mostrarlo en el navbar de Home y un booleano que indica el estado de login.
+
+La pantalla `/register` unicamente tenía funciones de creación de usuario en el lado del servidor y no devuelve la cookie necesaria para hacer las peticiones, por lo que no ha sido refactorizada con redux.
 
 ## Información sobre los anuncios
 
-Se ha añadido redux a los componentes AdsGrid, Update y Create, pues son los que cargan los anuncios, los editan o los crean
+Se ha añadido redux a los componentes AdsGrid, Update y Create, pues son los que se encargan de obtener los anuncios, editarlos y crearlos.
 
 ## Formularios
 
-El componente donde se ha implementado el formulario con lógica "escondida" es el de la pantalla de login, Login. Además del componente Input se ha creado un componente Button.
+El componente donde se ha implementado el formulario con lógica "escondida" es Login. Además del componente Input se ha creado un componente Button.
 
 ## Refactorizar algún componenente para que use hooks
 
@@ -18,4 +20,4 @@ El componente que ha sido refactorizado con hooks es Detail.
 
 ## Componente con snapshot testing
 
-El componente que usa snapshot testing es Login. También es el usado para el test de acción de store mockeado
+El componente que usa snapshot testing es Login. También es que ha sido usado para el test de acción de store mockeado.
