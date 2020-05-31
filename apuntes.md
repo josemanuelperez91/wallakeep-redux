@@ -4,7 +4,7 @@
 
 En la práctica de React no había que crear ninguna pantalla de usuario por lo que únicamente se almacena en el store el username para mostrarlo en el navbar de Home y un booleano que indica el estado de login.
 
-La pantalla `/register` unicamente tenía funciones de creación de usuario en el lado del servidor y no devuelve la cookie necesaria para hacer las peticiones, por lo que no ha sido refactorizada con redux.
+La pantalla `/register` unicamente tenía funciones de creación de usuario en el lado del servidor, por lo que no ha sido refactorizada con redux.
 
 ## Información sobre los anuncios
 
