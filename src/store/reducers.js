@@ -41,27 +41,17 @@ function login(state = initialState.login, action) {
     case ACTION_TYPES.SIGN_IN_SUCCESS:
       return {
         username: action.username,
-        isLogged: true,
+        isLoggedIn: true,
       };
     case ACTION_TYPES.SIGN_OUT:
       return {
         ...state,
-        isLogged: false,
+        isLoggedIn: false,
       };
     default:
       return state;
   }
 }
-// function register(state = initialState.isLogged, action) {
-//   switch (action.type) {
-//     case ACTION_TYPES.SIGN_UP_SUCCESS:
-//       return {
-//         isLogged: true,
-//       };
-//     default:
-//       return state;
-//   }
-// }
 
 const rootReducer = combineReducers({
   ads,

@@ -8,29 +8,22 @@ import Update from '../edit/connectedUpdate';
 import Create from '../edit/connectedCreate';
 import { Provider } from 'react-redux';
 import { Router, Switch, Route } from 'react-router-dom';
+import AuthRoute from '../auth/connectedAuthRoute';
 
 import history from '../../history';
 
-function App({ store, ...props }) {
+function App({ store }) {
   return (
     <Provider store={store}>
       <Router history={history}>
         <div className="App">
           <Switch>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/home" component={Home} />
-            <Route path="/detail/:ID" component={Detail} />
-            <Route path="/update/:ID" component={Update} />
-            <Route path="/create" component={Create} />
-
-            <Route>
-              <Login />
-            </Route>
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+            <AuthRoute path="/home" component={Home} />
+            <AuthRoute path="/detail/:ID" component={Detail} />
+            <AuthRoute path="/update/:ID" component={Update} />
+            <AuthRoute path="/create" component={Create} />
           </Switch>
         </div>
       </Router>
