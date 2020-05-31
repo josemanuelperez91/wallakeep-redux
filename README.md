@@ -48,7 +48,7 @@ Also a basic form, once registed, redirect to the /login page in order to access
 
 ### Home
 
-The main page. It shows all the recorded advertisements and a filter that lets the user to search using different values.
+The main page. It shows all the recorded advertisements and a filter that lets the user to search them using multiple parameters.
 
 ### Update/ID
 
@@ -56,8 +56,8 @@ An editing form for changing a specific advertisement atributes.
 
 ### Create
 
-An editing form to create any advertisement the user wants.
+An editing form to generate an advertisement in the app.
 
 ### Detail/ID
 
-A view with all the recorded atributes of a selected advertisement.
+A view with all the stored atributes of a selected advertisement.
