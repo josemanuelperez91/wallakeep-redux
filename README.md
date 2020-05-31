@@ -1,4 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React App: Wallakeep
+
+An advertisement store that lets logged users create and edit advertisement, using the API
+following API
+
+    http://34.89.93.186:8080/apiv1/
+
+## Download
+
+Copy or clone this application using Git with:
+
+    git clone https://github.com/josemanuelperez91/wallakeep-redux.git
+
+## Install
+
+Inside the root folder, use NPM to install the required and development dependecies:
+
+    cd wallakeep redux
+    npm install
 
 ## Available Scripts
 
@@ -17,52 +35,28 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## User Guide
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Login
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Basic login form that requires a previously created user in the /register page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Register
 
-### `npm run eject`
+Also a basic form, once registed, redirect to the /login page in order to access the app.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Home
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The main page. It shows all the recorded advertisements and a filter that lets the user to search using different values.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Update/ID
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+An editing form for changing a specific advertisement atributes.
 
-## Learn More
+### Create
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+An editing form to create any advertisement the user wants.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Detail/ID
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+A view with all the recorded atributes of a selected advertisement.
