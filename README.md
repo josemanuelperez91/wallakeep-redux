@@ -1,7 +1,6 @@
 # React App: Wallakeep
 
 An advertisement store that lets logged users create and edit advertisement, using the API
-following API
 
     http://34.89.93.186:8080/apiv1/
 
