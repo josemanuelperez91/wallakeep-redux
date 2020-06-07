@@ -24,6 +24,7 @@ function App({ store }) {
             <AuthRoute path="/detail/:ID" component={Detail} />
             <AuthRoute path="/update/:ID" component={Update} />
             <AuthRoute path="/create" component={Create} />
+            <Route path="/" component={Login} />
           </Switch>
         </div>
       </Router>
