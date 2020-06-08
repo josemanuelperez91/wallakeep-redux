@@ -20,6 +20,10 @@ export function signIn(body) {
     method: 'post',
     body: JSON.stringify(body),
     credentials: 'include',
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
   });
 }
 export function signUp(body) {
@@ -30,6 +34,10 @@ export function signUp(body) {
     method: 'post',
     body: JSON.stringify(body),
     credentials: 'include',
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
   });
 }
 
@@ -56,6 +64,9 @@ export function getAds(params) {
     method: 'get',
     credentials: 'include',
   }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
     return response.json();
   });
 }
@@ -65,6 +76,9 @@ export function getAdDetails(id) {
     method: 'get',
     credentials: 'include',
   }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
     return response.json();
   });
 }
@@ -77,6 +91,9 @@ export function postAd(body) {
     body: JSON.stringify(body),
     credentials: 'include',
   }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
     return response.json();
   });
 }
@@ -90,6 +107,9 @@ export function putAd(id, body) {
     body: JSON.stringify(body),
     credentials: 'include',
   }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
     return response.json();
   });
 }
