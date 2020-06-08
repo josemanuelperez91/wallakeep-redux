@@ -20,8 +20,6 @@ export function signIn(body) {
     method: 'post',
     body: JSON.stringify(body),
     credentials: 'include',
-  }).catch(() => {
-    console.error('API Error');
   });
 }
 export function signUp(body) {
@@ -32,8 +30,6 @@ export function signUp(body) {
     method: 'post',
     body: JSON.stringify(body),
     credentials: 'include',
-  }).catch(() => {
-    console.error('API Error');
   });
 }
 
@@ -59,26 +55,18 @@ export function getAds(params) {
   return fetch(query, {
     method: 'get',
     credentials: 'include',
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .catch(() => {
-      console.error('API Error');
-    });
+  }).then((response) => {
+    return response.json();
+  });
 }
 
 export function getAdDetails(id) {
   return fetch(`${config.ADS}/${id}`, {
     method: 'get',
     credentials: 'include',
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .catch(() => {
-      console.error('API Error');
-    });
+  }).then((response) => {
+    return response.json();
+  });
 }
 export function postAd(body) {
   return fetch(config.ADS, {
@@ -88,13 +76,9 @@ export function postAd(body) {
     method: 'post',
     body: JSON.stringify(body),
     credentials: 'include',
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .catch(() => {
-      console.error('API Error');
-    });
+  }).then((response) => {
+    return response.json();
+  });
 }
 export function putAd(id, body) {
   const putURL = `${config.ADS}/${id}`;
@@ -105,11 +89,7 @@ export function putAd(id, body) {
     method: 'put',
     body: JSON.stringify(body),
     credentials: 'include',
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .catch(() => {
-      console.error('API Error');
-    });
+  }).then((response) => {
+    return response.json();
+  });
 }
