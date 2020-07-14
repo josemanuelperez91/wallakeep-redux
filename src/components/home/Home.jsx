@@ -25,7 +25,7 @@ class Home extends React.Component {
   componentDidMount() {
     getTags().then((result) => {
       this.setState({
-        tags: result.results,
+        tags: result,
       });
     });
   }

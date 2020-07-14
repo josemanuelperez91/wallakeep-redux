@@ -77,7 +77,6 @@ class Filter extends React.Component {
 
   render() {
     const loadedTags = this.props.tags.filter((tag) => tag);
-
     const page = this.state.skip
       ? (Number(this.state.skip) + 15) / this.state.limit
       : 1;

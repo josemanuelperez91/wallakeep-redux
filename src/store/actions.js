@@ -20,8 +20,7 @@ export const fetchAds = (query) =>
     dispatch(fetchAdsReq());
     try {
       const response = await APIService.getAds(query);
-
-      dispatch(fetchAdsSuccess(response.results));
+      dispatch(fetchAdsSuccess(response));
     } catch (error) {
       dispatch(fetchAdsFail(error));
     }
