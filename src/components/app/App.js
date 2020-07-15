@@ -7,15 +7,14 @@ import Detail from '../detail/Detail';
 import Update from '../edit/connectedUpdate';
 import Create from '../edit/connectedCreate';
 import { Provider } from 'react-redux';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import AuthRoute from '../auth/connectedAuthRoute';
+import { ConnectedRouter } from 'connected-react-router';
 
-import history from '../../history';
-
-function App({ store }) {
+function App({ store, history }) {
   return (
     <Provider store={store}>
-      <Router history={history}>
+      <ConnectedRouter history={history}>
         <div className="App">
           <Switch>
             <Route path="/register" component={Register} />
@@ -27,7 +26,7 @@ function App({ store }) {
             <Route path="/" component={Login} />
           </Switch>
         </div>
-      </Router>
+      </ConnectedRouter>
     </Provider>
   );
 }

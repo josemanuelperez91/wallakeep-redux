@@ -1,22 +1,22 @@
 import * as ACTION_TYPES from './actionTypes';
+import { push } from 'connected-react-router';
 
-import APIService from '../services';
-import history from '../history';
+// import history from '../history';
 
-export const fetchAdsReq = () => ({
+const fetchAdsReq = () => ({
   type: ACTION_TYPES.FETCH_ADS_REQUEST,
 });
-export const fetchAdsSuccess = (ads) => ({
+const fetchAdsSuccess = (ads) => ({
   type: ACTION_TYPES.FETCH_ADS_SUCCESS,
   ads,
 });
-export const fetchAdsFail = (error) => ({
+const fetchAdsFail = (error) => ({
   type: ACTION_TYPES.FETCH_ADS_FAILURE,
   error,
 });
 
 export const fetchAds = (query) =>
-  async function (dispatch) {
+  async function (dispatch, getState, { APIService }) {
     dispatch(fetchAdsReq());
     try {
       const response = await APIService.getAds(query);
@@ -39,12 +39,12 @@ export const createAdFail = (error) => ({
 });
 
 export const createAd = (newAdData) =>
-  async function (dispatch) {
+  async function (dispatch, getState, { APIService }) {
     dispatch(createAdReq());
     try {
       const postedAd = await APIService.postAd(newAdData);
       dispatch(createAdSuccess(postedAd.result));
-      history.push('/home');
+      dispatch(push('/home'));
     } catch (error) {
       dispatch(createAdFail(error));
     }
@@ -63,12 +63,12 @@ export const updateAdFail = (error) => ({
 });
 
 export const updateAd = (adId, newAdData) =>
-  async function (dispatch) {
+  async function (dispatch, getState, { APIService }) {
     dispatch(updateAdReq());
     try {
       const updatedAd = await APIService.putAd(adId, newAdData);
       dispatch(updateAdSuccess(updatedAd.result));
-      history.push('/home');
+      dispatch(push('/home'));
     } catch (error) {
       dispatch(updateAdFail(error));
     }
@@ -87,14 +87,14 @@ export const signInFail = (error) => ({
 });
 
 export const signIn = (signInData) =>
-  async function (dispatch) {
+  async function (dispatch, getState, { APIService }) {
     dispatch(signInReq());
     try {
       await APIService.signIn(signInData);
       dispatch(signInSuccess(signInData.username));
       localStorage.setItem('username', signInData.username);
       localStorage.setItem('isLoggedIn', true);
-      history.push('/home');
+      dispatch(push('/home'));
     } catch (error) {
       dispatch(signInFail(error));
     }
@@ -106,5 +106,5 @@ export const signOut = () =>
       type: ACTION_TYPES.SIGN_OUT,
     });
     localStorage.setItem('isLoggedIn', false);
-    history.push('/login');
+    dispatch(push('/login'));
   };

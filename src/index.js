@@ -6,7 +6,7 @@ import APIService from './services';
 
 import * as serviceWorker from './serviceWorker';
 
-import { configureStore } from './store';
+import configureStore, { history } from './store';
 
 let username = localStorage.getItem('username');
 let isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -26,7 +26,10 @@ const preloadedState = {
 };
 const store = configureStore({ APIService })(preloadedState);
 
-ReactDOM.render(<App store={store} />, document.getElementById('root'));
+ReactDOM.render(
+  <App store={store} history={history} />,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

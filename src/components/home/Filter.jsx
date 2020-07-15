@@ -12,7 +12,7 @@ class Filter extends React.Component {
       tag: '',
       min: '',
       max: '',
-      venta: '',
+      sale: '',
       limit: AD_LIMIT_PER_PAGE,
       skip: '',
       filterIsChanged: false,
@@ -108,7 +108,7 @@ class Filter extends React.Component {
           <input
             value="true"
             onChange={this.handleInput}
-            name="venta"
+            name="sale"
             type="radio"
           />
         </label>
@@ -117,7 +117,7 @@ class Filter extends React.Component {
           <input
             value="false"
             onChange={this.handleInput}
-            name="venta"
+            name="sale"
             type="radio"
           />
         </label>
@@ -126,7 +126,7 @@ class Filter extends React.Component {
           <input
             value=""
             onChange={this.handleInput}
-            name="venta"
+            name="sale"
             type="radio"
             defaultChecked={true}
           />

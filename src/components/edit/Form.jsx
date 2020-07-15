@@ -68,7 +68,7 @@ class Form extends React.Component {
     }
     getTags().then((result) => {
       this.setState({
-        tags: result.results,
+        tags: result,
       });
     });
   }
