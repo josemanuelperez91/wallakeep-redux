@@ -15,3 +15,4 @@ export const SIGN_IN_SUCCESS = 'wallakeep/Login/SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILURE = 'wallakeep/Login/SIGN_IN_FAILURE';
 
 export const SIGN_OUT = 'wallakeep/Navbar/SIGN_OUT';
+export const CHANGE_LANGUAGE = 'wallakeep/FootBar/CHANGE_LANGUAGE';

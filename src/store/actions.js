@@ -1,5 +1,6 @@
 import * as ACTION_TYPES from './actionTypes';
 import { push } from 'connected-react-router';
+import { setLocale } from 'react-redux-i18n';
 
 // import history from '../history';
 
@@ -61,6 +62,10 @@ export const updateAdFail = (error) => ({
   type: ACTION_TYPES.UPDATE_AD_FAILURE,
   error,
 });
+
+export const changeLocale = (locale) => {
+  return (dispatch) => dispatch(setLocale(locale));
+};
 
 export const updateAd = (adId, newAdData) =>
   async function (dispatch, getState, { APIService }) {

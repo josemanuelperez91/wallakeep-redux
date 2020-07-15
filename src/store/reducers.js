@@ -35,6 +35,7 @@ export function ads(state = initialState.ads, action) {
       return state;
   }
 }
+
 export function login(state = initialState.login, action) {
   switch (action.type) {
     case ACTION_TYPES.SIGN_IN_SUCCESS:

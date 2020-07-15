@@ -19,6 +19,7 @@ const config = {
   ADS: API_URL + 'adverts',
   TAGS: API_URL + 'tags',
   AD_LIMIT_PER_PAGE: '15',
+  SUPPORTED_LOCALES: ['en', 'es'],
 };
 
 export default config;

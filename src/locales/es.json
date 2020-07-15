@@ -1,0 +1,9 @@
+{
+  "Login": {
+    "Title": "Acceso",
+    "SignIn": "Entrar",
+    "Idhaa": "No tengo una cuenta",
+    "usernameInputPlaceholder": "nombre de usuario",
+    "passwordInputPlaceholder": "contraseña"
+  }
+}

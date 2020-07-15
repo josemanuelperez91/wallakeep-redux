@@ -55,3 +55,17 @@ a {
   background-color: seagreen;
   color: white;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  font-size: 0.7rem;
+}
+div.link {
+  cursor: pointer;
+}
+div.link:hover {
+  text-decoration: underline;
+}
