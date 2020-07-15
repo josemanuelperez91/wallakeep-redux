@@ -17,7 +17,7 @@ export default function Form({ initialValue, onSubmit, children }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormContext.Provider value={handleChange}>
+      <FormContext.Provider value={{ handleChange, formData }}>
         {children}
       </FormContext.Provider>
     </form>
