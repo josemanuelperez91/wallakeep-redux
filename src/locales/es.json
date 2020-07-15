@@ -1,9 +1,18 @@
 {
   "Login": {
     "Title": "Acceso",
-    "SignIn": "Entrar",
-    "Idhaa": "No tengo una cuenta",
+    "Submit": "Entrar",
+    "Cancel": "No tengo una cuenta",
     "usernameInputPlaceholder": "nombre de usuario",
     "passwordInputPlaceholder": "contraseña"
+  },
+  "Register": {
+    "Title": "Registro",
+    "Submit": "Crear cuenta",
+    "Cancel": "Ya tengo una cuenta",
+    "usernameInputPlaceholder": "nombre de usuario",
+    "passwordInputPlaceholder": "contraseña",
+    "passwordRInputPlaceholder": "repetir contraseña",
+    "emailInputPlaceholder": "correo electrónico"
   }
 }

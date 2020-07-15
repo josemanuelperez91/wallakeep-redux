@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Register from '../register/Register';
+import Register from '../register/connectedRegister';
 import Login from '../login/connectedLogin';
 import Home from '../home/Home';
 import Detail from '../detail/Detail';

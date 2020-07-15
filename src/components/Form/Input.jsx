@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import FormContext from './FormContext';
 
-export default function Input({ name, placeholder, type }) {
+export default function Input({ name, placeholder, type, otherProps }) {
   const { handleChange, formData } = useContext(FormContext);
 
   return (
@@ -11,6 +11,7 @@ export default function Input({ name, placeholder, type }) {
       onChange={handleChange}
       type={type}
       value={formData[name]}
+      {...otherProps}
     />
   );
 }

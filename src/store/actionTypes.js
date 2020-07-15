@@ -14,5 +14,9 @@ export const SIGN_IN_REQUEST = 'wallakeep/Login/SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = 'wallakeep/Login/SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILURE = 'wallakeep/Login/SIGN_IN_FAILURE';
 
+export const SIGN_UP_REQUEST = 'wallakeep/Register/SIGN_UP_REQUEST';
+export const SIGN_UP_SUCCESS = 'wallakeep/Register/SIGN_UP_SUCCESS';
+export const SIGN_UP_FAILURE = 'wallakeep/Register/SIGN_UP_FAILURE';
+
 export const SIGN_OUT = 'wallakeep/Navbar/SIGN_OUT';
 export const CHANGE_LANGUAGE = 'wallakeep/FootBar/CHANGE_LANGUAGE';

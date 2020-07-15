@@ -1,9 +1,18 @@
 {
   "Login": {
     "Title": "Login",
-    "SignIn": "Sign In",
-    "Idhaa": "I dont have an accout",
+    "Submit": "Sign In",
+    "Cancel": "I dont have an accout",
     "usernameInputPlaceholder": "username",
     "passwordInputPlaceholder": "password"
+  },
+  "Register": {
+    "Title": "Register",
+    "Submit": "Sign Up",
+    "Cancel": "I already have an accout",
+    "usernameInputPlaceholder": "username",
+    "passwordInputPlaceholder": "password",
+    "passwordRInputPlaceholder": "repeat password",
+    "emailInputPlaceholder": "email"
   }
 }

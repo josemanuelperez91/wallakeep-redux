@@ -1,77 +1,113 @@
 import React from 'react';
-import { signUp } from '../../services/API';
 import { withRouter, Link } from 'react-router-dom';
+import { Translate, I18n } from 'react-redux-i18n';
 
-class Register extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
+import Form from '../Form/Form';
+import Input from '../Form/Input';
+import Button from '../Form/Button';
 
-  handleInput = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+//Para el navbar de idiomas
+import config from '../../config';
+
+const { SUPPORTED_LOCALES } = config;
+
+function Register({ signUp, changeLocale }) {
+  const onSubmit = (formData) => {
+    signUp(formData);
+  };
+  const handleChangeLocale = (event, newLocale) => {
+    event.preventDefault();
+    changeLocale(newLocale);
   };
 
-  handleRepeatPassword = (event) => {
-    if (event.target.value !== this.state.password) {
-      event.target.setCustomValidity('Passwords must match');
+  const checkRepeatPassword = () => {
+    const checkElement = document.querySelector('input[name=password]');
+    const verifyElement = document.querySelector('input[name=repeatPassword]');
+
+    if (checkElement.value !== verifyElement.value) {
+      verifyElement.setCustomValidity('Passwords must match');
     } else {
-      event.target.setCustomValidity('');
+      verifyElement.setCustomValidity('');
     }
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  return (
+    <div className="Register">
+      <h1>
+        <Translate value="Register.Title" />
+      </h1>
+      <Form
+        initialValue={{
+          username: '',
+          password: '',
+          email: '',
+          repeatPassword: '',
+        }}
+        onSubmit={onSubmit}
+      >
+        <Input
+          type="text"
+          otherProps={{
+            required: true,
+          }}
+          name="username"
+          placeholder={I18n.t('Register.usernameInputPlaceholder')}
+        ></Input>
+        <Input
+          otherProps={{
+            required: true,
+          }}
+          type="email"
+          name="email"
+          placeholder={I18n.t('Register.emailInputPlaceholder')}
+        ></Input>
+        <Input
+          otherProps={{
+            required: true,
+            autoComplete: 'password',
+          }}
+          type="password"
+          name="password"
+          placeholder={I18n.t('Register.passwordInputPlaceholder')}
+        ></Input>
+        <Input
+          otherProps={{
+            required: true,
+            autoComplete: 'password',
+            onInput: checkRepeatPassword,
+          }}
+          type="password"
+          name="repeatPassword"
+          placeholder={I18n.t('Register.passwordRInputPlaceholder')}
+        ></Input>
+        <Button className="greenButton" type="submit">
+          <Translate value="Register.Submit" />
+        </Button>
+      </Form>
 
-    signUp({ ...this.state }).then((response) => {
-      if (response.ok) {
-        this.props.history.push('/login');
-      }
-    });
-  };
-  render() {
-    return (
-      <div className="Register">
-        <h1>Register</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            required
-            name="username"
-            onChange={this.handleInput}
-            placeholder="username"
-            type="text"
-          />
-          <input
-            required
-            autoComplete="password"
-            name="password"
-            onChange={this.handleInput}
-            placeholder="password"
-            type="password"
-          />
-          <input
-            required
-            autoComplete=""
-            name="confirm-password"
-            placeholder="repeat password"
-            type="password"
-            onLoad={this.handleRepeatPassword}
-            onChange={this.handleRepeatPassword}
-          />
-          <button className="greenButton" type="submit">
-            Sign Up
-          </button>
-          <button type="button">
-            <Link to="/login">I have an accout</Link>
-          </button>
-        </form>
-      </div>
-    );
-  }
+      <Link to="/login">
+        <button type="button">
+          <Translate value="Register.Cancel" />
+        </button>
+      </Link>
+
+      <footer>
+        <ul>
+          {SUPPORTED_LOCALES.map((locale) => {
+            return (
+              <li key={locale}>
+                <div
+                  className="link"
+                  onClick={(event) => handleChangeLocale(event, locale)}
+                >
+                  {locale}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </footer>
+    </div>
+  );
 }
 export default withRouter(Register);

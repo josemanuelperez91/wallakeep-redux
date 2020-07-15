@@ -13,7 +13,7 @@ const API_URL = isLocalhost
   : 'https://wallaclone-281617.ew.r.appspot.com/api/';
 
 const config = {
-  API_URL: API_URL,
+  API_URL,
   REGISTER: API_URL + 'register',
   LOGIN: API_URL + 'authenticate',
   ADS: API_URL + 'adverts',

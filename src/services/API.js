@@ -34,11 +34,19 @@ export function signUp(body) {
     method: 'post',
     body: JSON.stringify(body),
     credentials: 'include',
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error();
-    }
-  });
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      if (!result.success) {
+        const key = Object.keys(result.value)[0];
+        const value = result.value[key];
+        const msg = result.error + ' ' + key + ' ' + value;
+        console.log(msg);
+        throw new Error(msg);
+      }
+    });
 }
 
 export function getTags() {

@@ -2,10 +2,11 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { Translate, I18n } from 'react-redux-i18n';
 
-import Form from './Form';
-import Input from './Input';
-import Button from './Button';
+import Form from '../Form/Form';
+import Input from '../Form/Input';
+import Button from '../Form/Button';
 
+//Para el navbar de idiomas
 import config from '../../config';
 
 const { SUPPORTED_LOCALES } = config;
@@ -35,15 +36,15 @@ function Login({ signIn, changeLocale }) {
           placeholder={I18n.t('Login.passwordInputPlaceholder')}
         ></Input>
         <Button className="greenButton" type="submit">
-          <Translate value="Login.SignIn" />
+          <Translate value="Login.Submit" />
         </Button>
       </Form>
 
-      <button type="button">
-        <Link to="/register">
-          <Translate value="Login.Idhaa" />
-        </Link>
-      </button>
+      <Link to="/register">
+        <button type="button">
+          <Translate value="Login.Cancel" />
+        </button>
+      </Link>
 
       <footer>
         <ul>

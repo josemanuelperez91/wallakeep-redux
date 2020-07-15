@@ -13,6 +13,9 @@ import { i18nReducer } from 'react-redux-i18n';
 import * as reducers from './reducers';
 import { translations } from '../locales/i18n';
 
+import config from '../config';
+const { SUPPORTED_LOCALES } = config;
+
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
@@ -35,7 +38,12 @@ export default function configureStore(config) {
     );
     syncTranslationWithStore(store);
     store.dispatch(loadTranslations(translations));
-    store.dispatch(setLocale('en'));
+
+    const storedLocale = localStorage.getItem('locale');
+    const firstLocale = SUPPORTED_LOCALES[0];
+    const preSelectedLocale = storedLocale ? storedLocale : firstLocale;
+
+    store.dispatch(setLocale(preSelectedLocale));
     return store;
   };
 }

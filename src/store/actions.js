@@ -64,6 +64,7 @@ export const updateAdFail = (error) => ({
 });
 
 export const changeLocale = (locale) => {
+  localStorage.setItem('locale', locale);
   return (dispatch) => dispatch(setLocale(locale));
 };
 
@@ -79,15 +80,27 @@ export const updateAd = (adId, newAdData) =>
     }
   };
 
-export const signInReq = () => ({
+const signInReq = () => ({
   type: ACTION_TYPES.SIGN_IN_REQUEST,
 });
-export const signInSuccess = (username) => ({
+const signInSuccess = (username) => ({
   type: ACTION_TYPES.SIGN_IN_SUCCESS,
   username,
 });
-export const signInFail = (error) => ({
+const signInFail = (error) => ({
   type: ACTION_TYPES.SIGN_IN_FAILURE,
+  error,
+});
+
+const signUpReq = () => ({
+  type: ACTION_TYPES.SIGN_UP_REQUEST,
+});
+const signUpSuccess = (username) => ({
+  type: ACTION_TYPES.SIGN_UP_SUCCESS,
+  username,
+});
+const signUpFail = (error) => ({
+  type: ACTION_TYPES.SIGN_UP_FAILURE,
   error,
 });
 
@@ -104,7 +117,20 @@ export const signIn = (signInData) =>
       dispatch(signInFail(error));
     }
   };
-
+export const signUp = (signUpData) =>
+  async function (dispatch, getState, { APIService }) {
+    dispatch(signUpReq());
+    try {
+      await APIService.signUp(signUpData);
+      dispatch(signUpSuccess());
+      // dispatch(showPopUp)
+      alert('cuenta creada ve a /login');
+    } catch (error) {
+      dispatch(signUpFail(error));
+      // dispatch(showPopUp)
+      alert(error);
+    }
+  };
 export const signOut = () =>
   function (dispatch) {
     dispatch({
