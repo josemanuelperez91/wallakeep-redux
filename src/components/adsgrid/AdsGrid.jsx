@@ -1,5 +1,5 @@
 import React from 'react';
-import Ad from './Ad';
+import Ad from '../home/Ad';
 import './AdsGrid.css';
 
 export default function AdsGrid({ ads }) {

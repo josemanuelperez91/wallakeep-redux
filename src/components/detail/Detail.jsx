@@ -1,45 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Detail.css';
-import { getAdDetails } from '../../services/API';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAdDetails } from '../../store/actions';
 const _ = require('lodash');
-
-export default function Detail({
+function Detail({
   match: {
     params: { ID },
   },
 }) {
-  const [adData, setAdData] = useState('');
+  const adDetails = useSelector((store) => store.adDetails);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getAdDetails(ID).then((response) => {
-      if (response.success) {
-        setAdData(response.result);
-      } else {
-        console.error(response.error);
-      }
-    });
-  }, [ID]);
+    dispatch(getAdDetails(ID));
+  }, [dispatch, ID]);
 
-  if (!_.isEmpty(adData)) {
-    const createDate = new Date(adData.createdAt).toLocaleString();
-    const updateDate = new Date(adData.updatedAt).toLocaleString();
-
+  if (!_.isEmpty(adDetails)) {
     return (
       <div className="Detail">
-        <h1>{adData.name}</h1>
-        <img alt={adData.name} src={adData.photo} />
-        <p>Type: {adData.type}</p>
-        <p>Price: {adData.price} €</p>
-        <p id="description">{adData.description}</p>
+        <h1>{adDetails.name}</h1>
+        <img alt={adDetails.name} src={adDetails.photo} />
+        <p>Type: {adDetails.sale ? 'Sale' : 'Purchase'}</p>
+        <p>Price: {adDetails.price} €</p>
+        <p id="description">{adDetails.description}</p>
         Tags:
         <ul>
-          {adData.tags.map((tag) => {
+          {adDetails.tags.map((tag) => {
             return <li key={tag}>{tag}</li>;
           })}
         </ul>
-        <p>Created: {createDate}</p>
-        <p>Last update: {updateDate}</p>
+        <p>Author: {adDetails.username}</p>
         <button>
           <Link to="/home">Back</Link>
         </button>
@@ -49,3 +40,5 @@ export default function Detail({
     return <div className="Detail">LOADING AD...</div>;
   }
 }
+
+export default Detail;

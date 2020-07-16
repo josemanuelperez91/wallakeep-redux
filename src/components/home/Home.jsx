@@ -1,47 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
-import Filter from './connectedFilter';
-import AdsGrid from './connectedAdsGrid';
+
+import AdsGrid from '../adsgrid/AdsGrid';
 import Navbar from './connectedNavbar';
+import Filter from './connectedFilter';
 
 import { Link } from 'react-router-dom';
-import { getTags } from '../../services/API';
 
-class Home extends React.Component {
-  state = {
-    tags: [],
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAds } from '../../store/actions';
+import config from '../../config';
+
+const { AD_LIMIT_PER_PAGE } = config;
+const _ = require('lodash');
+
+const createURLQuery = (params) => {
+  if (params.min || params.max) params.price = `${params.min}-${params.max}`;
+
+  params = _.omit(params, 'max', 'min');
+  params = _.omitBy(params, _.isEmpty);
+
+  const url = new URL(config.ADS);
+  url.search = new URLSearchParams(params);
+  return url;
+};
+
+function Home() {
+  const ads = useSelector((store) => store.ads);
+  const initialValue = {
+    name: '',
+    tag: '',
+    min: '',
+    max: '',
+    sale: '',
+    limit: AD_LIMIT_PER_PAGE,
+    skip: '0',
+    filterIsChanged: false,
   };
+  const [query, setQuery] = useState(createURLQuery(initialValue));
 
-  /**
-   * AbortController is used to, in case
-   * the session cookie is not valid and the API
-   * returns a 'Not logged in error' , prevent the fetching
-   * in componentDidMount to produce warnings in React due to 'memory leaks'
-   */
-  controller = new AbortController();
-  componentWillUnmount() {
-    this.controller.abort();
-  }
-  componentDidMount() {
-    getTags().then((result) => {
-      this.setState({
-        tags: result,
-      });
-    });
-  }
+  const dispatch = useDispatch();
 
-  render() {
-    return (
-      <div className="Home">
-        <Navbar></Navbar>
+  useEffect(() => {
+    dispatch(fetchAds(query));
+  }, [dispatch, query]);
 
-        <Filter tags={this.state.tags} onSubmit={this.onFilter}></Filter>
-        <button id="createAd" className="greenButton">
-          <Link to="create">New Ad</Link>
-        </button>
-        <AdsGrid></AdsGrid>
-      </div>
-    );
-  }
+  const onSubmit = (formData) => {
+    const newQuery = createURLQuery(formData);
+    setQuery(newQuery);
+  };
+  return (
+    <div className="Home">
+      <Navbar></Navbar>
+      <Filter initialValue={initialValue} onSubmit={onSubmit}></Filter>
+      <button id="createAd" className="greenButton">
+        <Link to="create">New Ad</Link>
+      </button>
+      <AdsGrid ads={ads}></AdsGrid>
+    </div>
+  );
 }
 export default Home;

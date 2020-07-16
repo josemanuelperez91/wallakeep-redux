@@ -2,6 +2,7 @@ import * as ACTION_TYPES from './actionTypes';
 
 const initialState = {
   ads: [],
+  adDetails: {},
   login: {
     username: '',
     isLoggedIn: false,
@@ -31,6 +32,14 @@ export function ads(state = initialState.ads, action) {
     case ACTION_TYPES.UPDATE_AD_SUCCESS:
       return updateAd(state, action.ad);
 
+    default:
+      return state;
+  }
+}
+export function adDetails(state = initialState.adDetails, action) {
+  switch (action.type) {
+    case ACTION_TYPES.GET_AD_DETAIL_SUCCESS:
+      return action.adDetails;
     default:
       return state;
   }

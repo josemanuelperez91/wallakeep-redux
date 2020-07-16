@@ -1,16 +1,4 @@
 import config from '../config';
-const _ = require('lodash');
-
-function createURLQuery(params) {
-  if (params.min || params.max) params.price = `${params.min}-${params.max}`;
-
-  params = _.omit(params, 'max', 'min');
-  params = _.omitBy(params, _.isEmpty);
-
-  const url = new URL(config.ADS);
-  url.search = new URLSearchParams(params);
-  return url;
-}
 
 export function signIn(body) {
   return fetch(config.LOGIN, {
@@ -26,6 +14,7 @@ export function signIn(body) {
     }
   });
 }
+
 export function signUp(body) {
   return fetch(config.REGISTER, {
     headers: {
@@ -88,9 +77,7 @@ export function getTags() {
     });
 }
 
-export function getAds(params) {
-  const query = createURLQuery(params);
-
+export function getAds(query) {
   return fetch(query, {
     method: 'get',
     credentials: 'include',

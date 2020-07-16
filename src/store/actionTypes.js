@@ -24,3 +24,7 @@ export const RECOVER_FAILURE = 'wallakeep/Recovery/RECOVER_FAILURE';
 
 export const SIGN_OUT = 'wallakeep/Navbar/SIGN_OUT';
 export const CHANGE_LANGUAGE = 'wallakeep/FootBar/CHANGE_LANGUAGE';
+
+export const GET_AD_DETAIL_REQUEST = 'wallakeep/Detail/GET_AD_DETAIL_REQUEST';
+export const GET_AD_DETAIL_SUCCESS = 'wallakeep/Detail/GET_AD_DETAIL_SUCCESS';
+export const GET_AD_DETAIL_FAILURE = 'wallakeep/Detail/GET_AD_DETAIL_FAILURE';

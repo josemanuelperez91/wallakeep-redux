@@ -106,6 +106,28 @@ export const signIn = (signInData) =>
     }
   };
 
+const getAdDetailsReq = () => ({
+  type: ACTION_TYPES.GET_AD_DETAIL_REQUEST,
+});
+const getAdDetailsSuccess = (adDetails) => ({
+  type: ACTION_TYPES.GET_AD_DETAIL_SUCCESS,
+  adDetails,
+});
+const getAdDetailsFail = (error) => ({
+  type: ACTION_TYPES.GET_AD_DETAIL_FAILURE,
+  error,
+});
+export const getAdDetails = (AdUri) =>
+  async function (dispatch, getState, { APIService }) {
+    dispatch(getAdDetailsReq());
+    try {
+      const response = await APIService.getAdDetails(AdUri);
+      dispatch(getAdDetailsSuccess(response.result));
+      return response;
+    } catch (error) {
+      dispatch(getAdDetailsFail(error));
+    }
+  };
 const recoverReq = () => ({
   type: ACTION_TYPES.RECOVER_REQUEST,
 });
