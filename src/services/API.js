@@ -40,10 +40,33 @@ export function signUp(body) {
     })
     .then((result) => {
       if (!result.success) {
-        const key = Object.keys(result.value)[0];
-        const value = result.value[key];
-        const msg = result.error + ' ' + key + ' ' + value;
-        console.log(msg);
+        let msg = '';
+        if (result.error === 'duplicate') {
+          const key = Object.keys(result.value)[0];
+          const value = result.value[key];
+          msg = result.error + ' ' + key + ' ' + value;
+        } else {
+          msg = result.error;
+        }
+        throw new Error(msg);
+      }
+    });
+}
+export function recoverPass(email) {
+  return fetch(config.RECOVER, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'post',
+    body: JSON.stringify(email),
+    credentials: 'include',
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      if (!result.success) {
+        const msg = result.error;
         throw new Error(msg);
       }
     });

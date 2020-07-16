@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { Translate, I18n } from 'react-redux-i18n';
+import { Translate } from 'react-redux-i18n';
 
 import Form from '../Form/Form';
 import Input from '../Form/Input';
@@ -45,22 +45,23 @@ function Register({ signUp, changeLocale }) {
         }}
         onSubmit={onSubmit}
       >
+        <Translate value="Register.usernameInputPlaceholder" />
         <Input
           type="text"
           otherProps={{
             required: true,
           }}
           name="username"
-          placeholder={I18n.t('Register.usernameInputPlaceholder')}
         ></Input>
+        <Translate value="Register.emailInputPlaceholder" />
         <Input
           otherProps={{
             required: true,
           }}
           type="email"
           name="email"
-          placeholder={I18n.t('Register.emailInputPlaceholder')}
         ></Input>
+        <Translate value="Register.passwordInputPlaceholder" />
         <Input
           otherProps={{
             required: true,
@@ -68,8 +69,8 @@ function Register({ signUp, changeLocale }) {
           }}
           type="password"
           name="password"
-          placeholder={I18n.t('Register.passwordInputPlaceholder')}
         ></Input>
+        <Translate value="Register.passwordRInputPlaceholder" />
         <Input
           otherProps={{
             required: true,
@@ -78,7 +79,6 @@ function Register({ signUp, changeLocale }) {
           }}
           type="password"
           name="repeatPassword"
-          placeholder={I18n.t('Register.passwordRInputPlaceholder')}
         ></Input>
         <Button className="greenButton" type="submit">
           <Translate value="Register.Submit" />

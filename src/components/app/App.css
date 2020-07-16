@@ -55,6 +55,10 @@ a {
   background-color: seagreen;
   color: white;
 }
+.redButton {
+  background-color: #6e1827;
+  color: white;
+}
 
 footer {
   position: fixed;

@@ -6,44 +6,49 @@ import Form from '../Form/Form';
 import Input from '../Form/Input';
 import Button from '../Form/Button';
 
-//Para el navbar de idiomas
 import config from '../../config';
 
 const { SUPPORTED_LOCALES } = config;
 
-function Login({ signIn, changeLocale }) {
+function Recovery({ recoverPass, changeLocale }) {
   const onSubmit = (formData) => {
-    signIn(formData);
+    recoverPass(formData);
   };
   const handleChangeLocale = (event, newLocale) => {
     event.preventDefault();
     changeLocale(newLocale);
   };
+
   return (
-    <div className="Login">
+    <div className="Recovery">
       <h1>
-        <Translate value="Login.Title" />
+        <Translate value="Recovery.Title" />
       </h1>
-      <Form initialValue={{ username: '', password: '' }} onSubmit={onSubmit}>
-        <Translate value="Login.usernameInputPlaceholder" />
-        <Input type="text" name="username"></Input>
-        <Translate value="Login.passwordInputPlaceholder" />
-        <Input type="password" name="password"></Input>
+      <Form
+        initialValue={{
+          email: '',
+        }}
+        onSubmit={onSubmit}
+      >
+        <Translate value="Register.emailInputPlaceholder" />
+        <Input
+          type="email"
+          otherProps={{
+            required: true,
+          }}
+          name="email"
+        ></Input>
+
         <Button className="greenButton" type="submit">
-          <Translate value="Login.Submit" />
+          <Translate value="Recovery.Submit" />
         </Button>
       </Form>
 
-      <Link to="/register">
+      <Link to="/login">
         <button type="button">
-          <Translate value="Login.Cancel" />
+          <Translate value="Recovery.Cancel" />
         </button>
       </Link>
-      {/* <Link to="/recovery">
-        <button className="redButton" type="button">
-          <Translate value="Login.Forgot" />
-        </button>
-      </Link> */}
 
       <footer>
         <ul>
@@ -64,4 +69,4 @@ function Login({ signIn, changeLocale }) {
     </div>
   );
 }
-export default withRouter(Login);
+export default withRouter(Recovery);

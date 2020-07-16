@@ -4,7 +4,8 @@
     "Submit": "Entrar",
     "Cancel": "No tengo una cuenta",
     "usernameInputPlaceholder": "nombre de usuario",
-    "passwordInputPlaceholder": "contraseña"
+    "passwordInputPlaceholder": "contraseña",
+    "Forgot": "¿Olvidaste tu contraseña?"
   },
   "Register": {
     "Title": "Registro",
@@ -14,5 +15,10 @@
     "passwordInputPlaceholder": "contraseña",
     "passwordRInputPlaceholder": "repetir contraseña",
     "emailInputPlaceholder": "correo electrónico"
+  },
+  "Recovery": {
+    "Title": "Recuperación de constraseña",
+    "Submit": "Solicitar",
+    "Cancel": "Volver"
   }
 }

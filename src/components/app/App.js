@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Register from '../register/connectedRegister';
+import Recovery from '../recovery/connectedRecovery';
 import Login from '../login/connectedLogin';
 import Home from '../home/Home';
 import Detail from '../detail/Detail';
@@ -18,6 +19,7 @@ function App({ store, history }) {
         <div className="App">
           <Switch>
             <Route path="/register" component={Register} />
+            <Route path="/recovery" component={Recovery} />
             <Route path="/login" component={Login} />
             <AuthRoute path="/home" component={Home} />
             <AuthRoute path="/detail/:ID" component={Detail} />

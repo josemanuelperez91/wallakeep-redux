@@ -27,14 +27,14 @@ export const fetchAds = (query) =>
     }
   };
 
-export const createAdReq = () => ({
+const createAdReq = () => ({
   type: ACTION_TYPES.CREATE_AD_REQUEST,
 });
-export const createAdSuccess = (ad) => ({
+const createAdSuccess = (ad) => ({
   type: ACTION_TYPES.CREATE_AD_SUCCESS,
   ad,
 });
-export const createAdFail = (error) => ({
+const createAdFail = (error) => ({
   type: ACTION_TYPES.CREATE_AD_FAILURE,
   error,
 });
@@ -92,18 +92,6 @@ const signInFail = (error) => ({
   error,
 });
 
-const signUpReq = () => ({
-  type: ACTION_TYPES.SIGN_UP_REQUEST,
-});
-const signUpSuccess = (username) => ({
-  type: ACTION_TYPES.SIGN_UP_SUCCESS,
-  username,
-});
-const signUpFail = (error) => ({
-  type: ACTION_TYPES.SIGN_UP_FAILURE,
-  error,
-});
-
 export const signIn = (signInData) =>
   async function (dispatch, getState, { APIService }) {
     dispatch(signInReq());
@@ -117,6 +105,40 @@ export const signIn = (signInData) =>
       dispatch(signInFail(error));
     }
   };
+
+const recoverReq = () => ({
+  type: ACTION_TYPES.RECOVER_REQUEST,
+});
+const recoverSuccess = (username) => ({
+  type: ACTION_TYPES.RECOVER_SUCCESS,
+  username,
+});
+const recoverFail = (error) => ({
+  type: ACTION_TYPES.RECOVER_FAILURE,
+  error,
+});
+export const recoverPass = (email) =>
+  async function (dispatch, getState, { APIService }) {
+    dispatch(recoverReq());
+    try {
+      await APIService.recoverPass(email);
+      dispatch(recoverSuccess());
+    } catch (error) {
+      dispatch(recoverFail(error));
+    }
+  };
+
+const signUpReq = () => ({
+  type: ACTION_TYPES.SIGN_UP_REQUEST,
+});
+const signUpSuccess = (username) => ({
+  type: ACTION_TYPES.SIGN_UP_SUCCESS,
+  username,
+});
+const signUpFail = (error) => ({
+  type: ACTION_TYPES.SIGN_UP_FAILURE,
+  error,
+});
 export const signUp = (signUpData) =>
   async function (dispatch, getState, { APIService }) {
     dispatch(signUpReq());
