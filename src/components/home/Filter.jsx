@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Filter.css';
 
-export default function Filter({ initialValue, onSubmit }) {
+export default function Filter({ initialValue, onSubmit, adsLength }) {
   const [formData, setFormData] = useState({
     ...initialValue,
   });
@@ -13,19 +13,29 @@ export default function Filter({ initialValue, onSubmit }) {
     if (currentSkip <= 0) {
       currentSkip = '0';
     }
-    setFormData({ ...formData, skip: String(currentSkip) });
-    onSubmit(formData);
+    setFormData({
+      ...formData,
+      skip: String(currentSkip),
+    });
   };
-  useEffect(() => {
-    onSubmit(formData);
-  }, [formData.skip]);
 
   const nextPage = () => {
     let currentSkip = formData.skip;
     currentSkip = Number(currentSkip) + 15;
-
-    setFormData({ ...formData, skip: String(currentSkip) }, onSubmit(formData));
+    setFormData({
+      ...formData,
+      skip: String(currentSkip),
+    });
   };
+  const isFirstRun = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+    } else {
+      onSubmit(formData);
+    }
+  }, [formData.skip, onSubmit, formData]);
 
   const handleInput = (event) => {
     setFormData({
@@ -38,7 +48,6 @@ export default function Filter({ initialValue, onSubmit }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormData({ ...formData, skip: '', filterIsChanged: false });
-
     onSubmit(formData);
   };
 
@@ -105,7 +114,11 @@ export default function Filter({ initialValue, onSubmit }) {
 
       <button
         className="pagination"
-        disabled={formData.skip && !formData.filterIsChanged ? '' : 'disabled'}
+        disabled={
+          Number(formData.skip) > 0 && !formData.filterIsChanged
+            ? ''
+            : 'disabled'
+        }
         onClick={previousPage}
         type="button"
       >
@@ -114,7 +127,7 @@ export default function Filter({ initialValue, onSubmit }) {
       <div className="pagination ">Page: {page}</div>
       <button
         className="pagination"
-        disabled={formData.filterIsChanged ? 'disabled' : ''}
+        disabled={adsLength > 15 || formData.filterIsChanged ? 'disabled' : ''}
         onClick={nextPage}
         type="button"
       >

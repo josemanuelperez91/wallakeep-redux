@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import './Home.css';
 
 import AdsGrid from '../adsgrid/AdsGrid';
-import Navbar from './connectedNavbar';
-import Filter from './connectedFilter';
+import Navbar from '../navbar/connectedNavbar';
+import Filter from './Filter';
 
 import { Link } from 'react-router-dom';
 
@@ -45,14 +45,18 @@ function Home() {
     dispatch(fetchAds(query));
   }, [dispatch, query]);
 
-  const onSubmit = (formData) => {
+  const onSubmit = useCallback((formData) => {
     const newQuery = createURLQuery(formData);
     setQuery(newQuery);
-  };
+  }, []);
   return (
     <div className="Home">
       <Navbar></Navbar>
-      <Filter initialValue={initialValue} onSubmit={onSubmit}></Filter>
+      <Filter
+        adsLength={ads.length}
+        initialValue={initialValue}
+        onSubmit={onSubmit}
+      ></Filter>
       <button id="createAd" className="greenButton">
         <Link to="create">New Ad</Link>
       </button>

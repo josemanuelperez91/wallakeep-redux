@@ -21,6 +21,7 @@ function App({ store, history }) {
             <Route path="/register" component={Register} />
             <Route path="/recovery" component={Recovery} />
             <Route path="/login" component={Login} />
+            <Route path="/user" component={Login} />
             <AuthRoute path="/home" component={Home} />
             <AuthRoute path="/detail/:ID" component={Detail} />
             <AuthRoute path="/update/:ID" component={Update} />

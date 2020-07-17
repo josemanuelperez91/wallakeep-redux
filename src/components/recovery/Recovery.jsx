@@ -2,9 +2,9 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { Translate } from 'react-redux-i18n';
 
-import Form from '../Form/Form';
-import Input from '../Form/Input';
-import Button from '../Form/Button';
+import Form from '../form/Form';
+import Input from '../form/Input';
+import Button from '../form/Button';
 
 import config from '../../config';
 
