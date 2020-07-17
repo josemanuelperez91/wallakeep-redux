@@ -127,7 +127,7 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
       <div className="pagination ">Page: {page}</div>
       <button
         className="pagination"
-        disabled={adsLength > 15 || formData.filterIsChanged ? 'disabled' : ''}
+        disabled={adsLength < 15 || formData.filterIsChanged ? 'disabled' : ''}
         onClick={nextPage}
         type="button"
       >

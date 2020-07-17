@@ -5,6 +5,7 @@ import Recovery from '../recovery/connectedRecovery';
 import Login from '../login/connectedLogin';
 import Home from '../home/Home';
 import Detail from '../detail/Detail';
+import User from '../user/User';
 import Update from '../edit/connectedUpdate';
 import Create from '../edit/connectedCreate';
 import { Provider } from 'react-redux';
@@ -21,7 +22,7 @@ function App({ store, history }) {
             <Route path="/register" component={Register} />
             <Route path="/recovery" component={Recovery} />
             <Route path="/login" component={Login} />
-            <Route path="/user" component={Login} />
+            <Route path="/user" component={User} />
             <AuthRoute path="/home" component={Home} />
             <AuthRoute path="/detail/:ID" component={Detail} />
             <AuthRoute path="/update/:ID" component={Update} />
