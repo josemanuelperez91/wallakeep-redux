@@ -25,6 +25,9 @@ export function ads(state = initialState.ads, action) {
     case ACTION_TYPES.FETCH_ADS_SUCCESS:
       return action.ads;
 
+    case ACTION_TYPES.FETCH_USER_ADS_SUCCESS:
+      return action.ads;
+
     case ACTION_TYPES.CREATE_AD_SUCCESS:
       const newState = state.concat(action.ad);
       return newState;

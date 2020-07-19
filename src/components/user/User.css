@@ -1,0 +1,11 @@
+#createAd {
+  background-color: seagreen;
+  color: white;
+  max-width: 100px;
+  margin-bottom: 20px;
+}
+
+.User {
+  width: 100%;
+  max-width: 750px;
+}

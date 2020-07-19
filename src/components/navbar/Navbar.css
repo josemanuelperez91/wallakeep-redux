@@ -4,14 +4,31 @@
   width: fit-content;
   display: inline-block;
 }
-#my-ads {
-  background-color: white;
+#signUp {
+  background-color: forestgreen;
+  color: white;
   width: fit-content;
+  display: inline-block;
+  margin-left: 20px;
+}
+#home {
+  background-color: white;
+  color: black;
+  width: fit-content;
+  /* display: inline-block; */
+  margin-left: 20px;
   float: right;
-  margin-left: 10px;
+}
+#signIn {
+  background-color: white;
+  color: black;
+  width: fit-content;
+  display: inline-block;
 }
 #user {
   background-color: white;
   width: fit-content;
+  min-width: 100px;
   float: right;
+  margin-left: 20px;
 }

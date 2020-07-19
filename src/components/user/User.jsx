@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect } from 'react';
 import './User.css';
 
 import AdsGrid from '../adsgrid/AdsGrid';
@@ -7,13 +7,22 @@ import Navbar from '../navbar/connectedNavbar';
 import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAds } from '../../store/actions';
+import { fetchUserAds } from '../../store/actions';
 
-const _ = require('lodash');
-
-function User() {
+function User({
+  match: {
+    params: { username },
+  },
+}) {
   const ads = useSelector((store) => store.ads);
+  const currentUser = useSelector((store) => store.login.username);
+  const currentIsLoggedIn = useSelector((store) => store.login.isLoggedIn);
+
   const dispatch = useDispatch();
+  let type = 'user';
+  if (currentIsLoggedIn && currentUser === username) {
+    type = 'private';
+  }
 
   useEffect(() => {
     dispatch(fetchUserAds(username));
@@ -22,15 +31,14 @@ function User() {
   return (
     <div className="User">
       <Navbar></Navbar>
-      <Filter
-        adsLength={ads.length}
-        initialValue={initialValue}
-        onSubmit={onSubmit}
-      ></Filter>
-      <button id="createAd" className="greenButton">
-        <Link to="create">New Ad</Link>
-      </button>
-      <AdsGrid ads={ads}></AdsGrid>
+      <h1>{username} Ads</h1>
+      {type === 'private' && (
+        <button id="createAd" className="greenButton">
+          <Link to="create">New Ad</Link>
+        </button>
+      )}
+
+      <AdsGrid ads={ads} type={type}></AdsGrid>
     </div>
   );
 }

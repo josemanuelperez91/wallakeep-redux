@@ -88,7 +88,20 @@ export function getAds(query) {
     return response.json();
   });
 }
+export function getUserAds(username) {
+  const url = new URL(config.ADS);
+  url.search = new URLSearchParams({ username });
 
+  return fetch(url, {
+    method: 'get',
+    credentials: 'include',
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
+    return response.json();
+  });
+}
 export function getAdDetails(id) {
   return fetch(`${config.ADS}/${id}`, {
     method: 'get',

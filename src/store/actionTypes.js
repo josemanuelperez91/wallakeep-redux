@@ -28,3 +28,7 @@ export const CHANGE_LANGUAGE = 'wallakeep/FootBar/CHANGE_LANGUAGE';
 export const GET_AD_DETAIL_REQUEST = 'wallakeep/Detail/GET_AD_DETAIL_REQUEST';
 export const GET_AD_DETAIL_SUCCESS = 'wallakeep/Detail/GET_AD_DETAIL_SUCCESS';
 export const GET_AD_DETAIL_FAILURE = 'wallakeep/Detail/GET_AD_DETAIL_FAILURE';
+
+export const FETCH_USER_ADS_REQUEST = 'wallakeep/User/FETCH_USER_ADS_REQUEST';
+export const FETCH_USER_ADS_SUCCESS = 'wallakeep/User/FETCH_USER_ADS_SUCCESS';
+export const FETCH_USER_ADS_FAILURE = 'wallakeep/User/FETCH_USER_ADS_FAILURE';

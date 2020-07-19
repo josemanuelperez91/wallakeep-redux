@@ -26,7 +26,27 @@ export const fetchAds = (query) =>
       dispatch(fetchAdsFail(error));
     }
   };
-
+const fetchUserAdsReq = () => ({
+  type: ACTION_TYPES.FETCH_USER_ADS_REQUEST,
+});
+const fetchUserAdsSuccess = (ads) => ({
+  type: ACTION_TYPES.FETCH_USER_ADS_SUCCESS,
+  ads,
+});
+const fetchUserAdsFail = (error) => ({
+  type: ACTION_TYPES.FETCH_USER_ADS_FAILURE,
+  error,
+});
+export const fetchUserAds = (username) =>
+  async function (dispatch, getState, { APIService }) {
+    dispatch(fetchUserAdsReq());
+    try {
+      const response = await APIService.getUserAds(username);
+      dispatch(fetchUserAdsSuccess(response));
+    } catch (error) {
+      dispatch(fetchUserAdsFail(error));
+    }
+  };
 const createAdReq = () => ({
   type: ACTION_TYPES.CREATE_AD_REQUEST,
 });

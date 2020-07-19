@@ -22,12 +22,13 @@ function App({ store, history }) {
             <Route path="/register" component={Register} />
             <Route path="/recovery" component={Recovery} />
             <Route path="/login" component={Login} />
-            <Route path="/user" component={User} />
-            <AuthRoute path="/home" component={Home} />
-            <AuthRoute path="/detail/:ID" component={Detail} />
+            <Route path="/users/:username" component={User} />
+            <Route path="/home" component={Home} />
+            <Route path="/detail/:ID" component={Detail} />
+            <AuthRoute path="/myaccount" component={User} />
             <AuthRoute path="/update/:ID" component={Update} />
             <AuthRoute path="/create" component={Create} />
-            <Route path="/" component={Login} />
+            <Route path="/" component={Home} />
           </Switch>
         </div>
       </ConnectedRouter>

@@ -5,8 +5,6 @@ import AdsGrid from '../adsgrid/AdsGrid';
 import Navbar from '../navbar/connectedNavbar';
 import Filter from './Filter';
 
-import { Link } from 'react-router-dom';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAds } from '../../store/actions';
 import config from '../../config';
@@ -27,6 +25,7 @@ const createURLQuery = (params) => {
 
 function Home() {
   const ads = useSelector((store) => store.ads);
+  const type = 'public';
   const initialValue = {
     name: '',
     tag: '',
@@ -57,10 +56,7 @@ function Home() {
         initialValue={initialValue}
         onSubmit={onSubmit}
       ></Filter>
-      <button id="createAd" className="greenButton">
-        <Link to="create">New Ad</Link>
-      </button>
-      <AdsGrid ads={ads}></AdsGrid>
+      <AdsGrid ads={ads} type={type}></AdsGrid>
     </div>
   );
 }

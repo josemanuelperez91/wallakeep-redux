@@ -27,3 +27,7 @@
   padding: 5px 5px 0px 5px;
   min-height: 100px;
 }
+
+.Ad .publisher a {
+  text-decoration: underline;
+}

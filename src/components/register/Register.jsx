@@ -50,6 +50,10 @@ function Register({ signUp, changeLocale }) {
           type="text"
           otherProps={{
             required: true,
+            pattern: '[a-zA-Z0-9-]+',
+            minlength: '4',
+            maxlength: '10',
+            title: 'Username must be 4-10 alphanumeric characters (no spaces)',
           }}
           name="username"
         ></Input>

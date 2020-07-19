@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import { signOut } from '../../store/actions';
-import { getUsername } from '../../store/selectors';
+import { getUsername, getIsLoggedIn } from '../../store/selectors';
 
 function mapStateToProps(state, ownProps) {
   return {
     username: getUsername(state),
+    isLoggedIn: getIsLoggedIn(state),
   };
 }
 
