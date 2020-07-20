@@ -10,7 +10,7 @@ export default function Navbar({ signOut, username, isLoggedIn }) {
         <button id="signOut" onClick={signOut}>
           Sign Out
         </button>
-        <Link to={'/users/' + username}>
+        <Link to={'/myaccount'}>
           <button id="user">{username}</button>
         </Link>
         <Link to="/home">

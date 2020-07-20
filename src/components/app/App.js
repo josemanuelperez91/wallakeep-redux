@@ -6,6 +6,7 @@ import Login from '../login/connectedLogin';
 import Home from '../home/Home';
 import Detail from '../detail/Detail';
 import User from '../user/User';
+import MyAccount from '../user/MyAccount';
 import Update from '../edit/connectedUpdate';
 import Create from '../edit/connectedCreate';
 import { Provider } from 'react-redux';
@@ -25,7 +26,7 @@ function App({ store, history }) {
             <Route path="/users/:username" component={User} />
             <Route path="/home" component={Home} />
             <Route path="/detail/:ID" component={Detail} />
-            <AuthRoute path="/myaccount" component={User} />
+            <AuthRoute path="/myaccount" component={MyAccount} />
             <AuthRoute path="/update/:ID" component={Update} />
             <AuthRoute path="/create" component={Create} />
             <Route path="/" component={Home} />

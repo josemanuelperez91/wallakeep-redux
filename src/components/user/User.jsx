@@ -34,7 +34,7 @@ function User({
       <h1>{username} Ads</h1>
       {type === 'private' && (
         <button id="createAd" className="greenButton">
-          <Link to="create">New Ad</Link>
+          <Link to="/create">New Ad</Link>
         </button>
       )}
 

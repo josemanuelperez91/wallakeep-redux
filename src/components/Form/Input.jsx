@@ -8,7 +8,9 @@ export default function Input({
   otherProps,
   template,
 }) {
-  const { handleChange, handleFile, formData } = useContext(FormContext);
+  const { handleChange, handleFile, handleSelect, formData } = useContext(
+    FormContext
+  );
 
   function handleFileSelect(evt) {
     const file = evt.target.files[0];
@@ -21,6 +23,13 @@ export default function Input({
     reader.readAsDataURL(file);
 
     evt.target.style.backgroundImage = 'url(' + fileURL + ')';
+  }
+
+  function handleSelection(evt) {
+    handleSelect(
+      evt.target.name,
+      Array.from(evt.target.selectedOptions, (item) => item.value)
+    );
   }
 
   switch (template) {
@@ -41,7 +50,8 @@ export default function Input({
           name={name}
           onChange={handleChange}
           defaultChecked={formData[name] === otherProps.radioValue}
-          value={formData[name]}
+          required={otherProps.required}
+          value={otherProps.radioValue}
         ></input>
       );
     case 'imageFile':
@@ -53,9 +63,36 @@ export default function Input({
           type="file"
           name={name}
           onChange={handleFileSelect}
+          required={formData[name] ? '' : 'required'}
           {...otherProps}
         ></input>
       );
+    case 'selector':
+      return (
+        <select
+          onChange={handleSelection}
+          name={name}
+          value={
+            formData[name] && formData[name].map((selectable) => selectable)
+          }
+          multiple={otherProps.multiple}
+          required={otherProps.required}
+        >
+          <option key={null} disabled="disabled" value="">
+            {otherProps.defaultValue}
+          </option>
+
+          {otherProps.availables &&
+            otherProps.availables.map((available) => {
+              return (
+                <option key={available} value={available}>
+                  {available}
+                </option>
+              );
+            })}
+        </select>
+      );
+
     default:
       return (
         <input

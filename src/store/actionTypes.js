@@ -32,3 +32,7 @@ export const GET_AD_DETAIL_FAILURE = 'wallakeep/Detail/GET_AD_DETAIL_FAILURE';
 export const FETCH_USER_ADS_REQUEST = 'wallakeep/User/FETCH_USER_ADS_REQUEST';
 export const FETCH_USER_ADS_SUCCESS = 'wallakeep/User/FETCH_USER_ADS_SUCCESS';
 export const FETCH_USER_ADS_FAILURE = 'wallakeep/User/FETCH_USER_ADS_FAILURE';
+
+export const FETCH_TAGS_REQUEST = 'wallakeep/App/FETCH_TAGS_REQUEST';
+export const FETCH_TAGS_SUCCESS = 'wallakeep/App/FETCH_TAGS_SUCCESS';
+export const FETCH_TAGS_FAILURE = 'wallakeep/App/FETCH_TAGS_FAILURE';

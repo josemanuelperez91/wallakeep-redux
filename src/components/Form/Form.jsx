@@ -9,6 +9,10 @@ export default function Form({ initialValue, onSubmit, children }) {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleSelect = (name, selectedArray) => {
+    setFormData({ ...formData, [name]: selectedArray });
+  };
   const handleFile = (name, encodedFile) => {
     setFormData({ ...formData, [name]: encodedFile });
   };
@@ -19,7 +23,9 @@ export default function Form({ initialValue, onSubmit, children }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormContext.Provider value={{ handleChange, handleFile, formData }}>
+      <FormContext.Provider
+        value={{ handleChange, handleFile, handleSelect, formData }}
+      >
         {children}
       </FormContext.Provider>
     </form>

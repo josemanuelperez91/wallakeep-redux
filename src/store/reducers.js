@@ -7,6 +7,7 @@ const initialState = {
     username: '',
     isLoggedIn: false,
   },
+  tags: [],
 };
 
 const updateAd = (ads, newAd) => {
@@ -47,7 +48,14 @@ export function adDetails(state = initialState.adDetails, action) {
       return state;
   }
 }
-
+export function tags(state = initialState.tags, action) {
+  switch (action.type) {
+    case ACTION_TYPES.FETCH_TAGS_SUCCESS:
+      return action.tags;
+    default:
+      return state;
+  }
+}
 export function login(state = initialState.login, action) {
   switch (action.type) {
     case ACTION_TYPES.SIGN_IN_SUCCESS:

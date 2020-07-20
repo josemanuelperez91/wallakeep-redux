@@ -26,6 +26,30 @@ export const fetchAds = (query) =>
       dispatch(fetchAdsFail(error));
     }
   };
+
+const fetchTagsReq = () => ({
+  type: ACTION_TYPES.FETCH_TAGS_REQUEST,
+});
+const fetchTagsSuccess = (tags) => ({
+  type: ACTION_TYPES.FETCH_TAGS_SUCCESS,
+  tags,
+});
+const fetchTagsFail = (error) => ({
+  type: ACTION_TYPES.FETCH_TAGS_FAILURE,
+  error,
+});
+
+export const fetchTags = () =>
+  async function (dispatch, getState, { APIService }) {
+    dispatch(fetchTagsReq());
+    try {
+      const response = await APIService.getTags();
+      dispatch(fetchTagsSuccess(response));
+    } catch (error) {
+      dispatch(fetchTagsFail(error));
+    }
+  };
+
 const fetchUserAdsReq = () => ({
   type: ACTION_TYPES.FETCH_USER_ADS_REQUEST,
 });
