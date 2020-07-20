@@ -46,7 +46,14 @@ export default function Create({ createAd }) {
     );
   };
 
-  const initialValue = {};
+  const initialValue = {
+    name: '',
+    price: '',
+    description: '',
+    tags: [],
+    sale: true,
+    image: '',
+  };
   const tags = useSelector((store) => store.tags);
   const dispatch = useDispatch();
 
