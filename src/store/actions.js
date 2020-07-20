@@ -74,9 +74,8 @@ export const createAd = (newAdData) =>
 export const updateAdReq = () => ({
   type: ACTION_TYPES.UPDATE_AD_REQUEST,
 });
-export const updateAdSuccess = (ad) => ({
+export const updateAdSuccess = () => ({
   type: ACTION_TYPES.UPDATE_AD_SUCCESS,
-  ad,
 });
 export const updateAdFail = (error) => ({
   type: ACTION_TYPES.UPDATE_AD_FAILURE,
@@ -92,10 +91,13 @@ export const updateAd = (adId, newAdData) =>
   async function (dispatch, getState, { APIService }) {
     dispatch(updateAdReq());
     try {
-      const updatedAd = await APIService.putAd(adId, newAdData);
-      dispatch(updateAdSuccess(updatedAd.result));
-      dispatch(push('/home'));
+      await APIService.putAd(adId, newAdData);
+      dispatch(updateAdSuccess());
+      // dispatch(showPopUp)
+      alert('Anuncio actualizado');
+      // dispatch(push('/home'));
     } catch (error) {
+      console.log(error);
       dispatch(updateAdFail(error));
     }
   };

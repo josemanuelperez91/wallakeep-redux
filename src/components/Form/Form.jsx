@@ -9,7 +9,9 @@ export default function Form({ initialValue, onSubmit, children }) {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-
+  const handleFile = (name, encodedFile) => {
+    setFormData({ ...formData, [name]: encodedFile });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit(formData);
@@ -17,7 +19,7 @@ export default function Form({ initialValue, onSubmit, children }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormContext.Provider value={{ handleChange, formData }}>
+      <FormContext.Provider value={{ handleChange, handleFile, formData }}>
         {children}
       </FormContext.Provider>
     </form>

@@ -22,7 +22,6 @@ export function signUp(body) {
     },
     method: 'post',
     body: JSON.stringify(body),
-    credentials: 'include',
   })
     .then((response) => {
       return response.json();
@@ -48,7 +47,6 @@ export function recoverPass(email) {
     },
     method: 'post',
     body: JSON.stringify(email),
-    credentials: 'include',
   })
     .then((response) => {
       return response.json();
@@ -80,7 +78,6 @@ export function getTags() {
 export function getAds(query) {
   return fetch(query, {
     method: 'get',
-    credentials: 'include',
   }).then((response) => {
     if (!response.ok) {
       throw new Error();
@@ -94,7 +91,6 @@ export function getUserAds(username) {
 
   return fetch(url, {
     method: 'get',
-    credentials: 'include',
   }).then((response) => {
     if (!response.ok) {
       throw new Error();
@@ -105,7 +101,6 @@ export function getUserAds(username) {
 export function getAdDetails(id) {
   return fetch(`${config.ADS}/${id}`, {
     method: 'get',
-    credentials: 'include',
   }).then((response) => {
     if (!response.ok) {
       throw new Error();
@@ -141,6 +136,5 @@ export function putAd(id, body) {
     if (!response.ok) {
       throw new Error();
     }
-    return response.json();
   });
 }

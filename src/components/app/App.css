@@ -41,10 +41,11 @@ input {
 }
 label {
   display: inline-block;
-  margin: 0 10px;
-}
-label input[type='radio'] {
-  padding: 10px;
+  margin: 10px;
+  border: 1px solid white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 a {
