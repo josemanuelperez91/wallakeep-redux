@@ -8,6 +8,7 @@ import {
   signUp,
   recoverPass,
   getUserAds,
+  deleteAd,
 } from './API';
 
 export default {
@@ -20,4 +21,5 @@ export default {
   signUp,
   recoverPass,
   getUserAds,
+  deleteAd,
 };

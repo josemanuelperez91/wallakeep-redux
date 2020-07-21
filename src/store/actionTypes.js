@@ -6,6 +6,10 @@ export const CREATE_AD_REQUEST = 'wallakeep/Create/CREATE_AD_REQUEST';
 export const CREATE_AD_SUCCESS = 'wallakeep/Create/CREATE_AD_SUCCESS';
 export const CREATE_AD_FAILURE = 'wallakeep/Create/CREATE_AD_FAILURE';
 
+export const DELETE_AD_REQUEST = 'wallakeep/Update/DELETE_AD_REQUEST';
+export const DELETE_AD_SUCCESS = 'wallakeep/Update/DELETE_AD_SUCCESS';
+export const DELETE_AD_FAILURE = 'wallakeep/Update/DELETE_AD_FAILURE';
+
 export const UPDATE_AD_REQUEST = 'wallakeep/Update/UPDATE_AD_REQUEST';
 export const UPDATE_AD_SUCCESS = 'wallakeep/Update/UPDATE_AD_SUCCESS';
 export const UPDATE_AD_FAILURE = 'wallakeep/Update/UPDATE_AD_FAILURE';

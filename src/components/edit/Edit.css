@@ -11,3 +11,7 @@
   background-size: contain;
   margin: 0 auto;
 }
+#Delete {
+  background-color: maroon;
+  color: white;
+}

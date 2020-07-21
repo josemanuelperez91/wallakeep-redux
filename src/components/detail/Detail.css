@@ -1,27 +1,35 @@
 .Detail {
   width: 100%;
   max-width: 800px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  box-shadow: 0px 0px 5px 2px white;
-  margin: 10px;
+  padding: 10px;
 }
+table {
+  margin: 20px auto 10px auto;
+  width: 100%;
+}
+table td {
+  border-bottom: 1px solid white;
+  padding: 10px;
+}
+
 .Detail img {
-  width: fit-content;
-  max-width: 33vw;
+  width: 300px;
+  margin: 30px auto 0 auto;
+  display: block;
+  border: 2px solid white;
+  border-radius: 5px;
 }
-.Detail p {
-  font-size: 1.3rem;
-  margin: 5px 0px;
+.Detail h1 {
+  margin: 0px;
+  font-size: 3rem;
 }
-.Detail button {
-  width: fit-content;
-  margin: 20px 0px;
+.Detail ul {
+  margin: 8px 0px 5px 0px;
+  display: block;
 }
 #description {
-  padding: 10px;
-  border: 1px solid white;
-  width: 300px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+}
+#publisher {
+  text-decoration: underline;
 }

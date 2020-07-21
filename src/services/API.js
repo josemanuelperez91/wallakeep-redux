@@ -138,3 +138,17 @@ export function putAd(id, body) {
     }
   });
 }
+export function deleteAd(id) {
+  const deleteURL = `${config.ADS}/${id}`;
+  return fetch(deleteURL, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'delete',
+    credentials: 'include',
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
+  });
+}

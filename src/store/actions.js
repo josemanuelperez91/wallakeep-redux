@@ -1,8 +1,30 @@
 import * as ACTION_TYPES from './actionTypes';
 import { push } from 'connected-react-router';
 import { setLocale } from 'react-redux-i18n';
+import config from '../config';
+import sha256 from 'crypto-js/sha256';
+import firebase from '../config/firebaseStore';
 
-// import history from '../history';
+const handleImageUpload = (imageData) => {
+  const storage = firebase.storage();
+  const storageRef = storage.ref();
+
+  const imageName = sha256(imageData);
+  const imagesRef = storageRef.child(config.AD_IMAGE_BUCKET_NAME + imageName);
+  const imageUpload = imagesRef.putString(imageData, 'data_url');
+  imageUpload.on(
+    'state_changed',
+    function (snapshot) {},
+    function (error) {
+      console.error(error);
+    },
+    function () {
+      imageUpload.snapshot.ref.getDownloadURL().then(function (imageURL) {
+        return imageURL;
+      });
+    }
+  );
+};
 
 const fetchAdsReq = () => ({
   type: ACTION_TYPES.FETCH_ADS_REQUEST,
@@ -95,6 +117,11 @@ export const createAd = (newAdData) =>
     }
   };
 
+export const changeLocale = (locale) => {
+  localStorage.setItem('locale', locale);
+  return (dispatch) => dispatch(setLocale(locale));
+};
+
 export const updateAdReq = () => ({
   type: ACTION_TYPES.UPDATE_AD_REQUEST,
 });
@@ -105,16 +132,12 @@ export const updateAdFail = (error) => ({
   type: ACTION_TYPES.UPDATE_AD_FAILURE,
   error,
 });
-
-export const changeLocale = (locale) => {
-  localStorage.setItem('locale', locale);
-  return (dispatch) => dispatch(setLocale(locale));
-};
-
 export const updateAd = (adId, newAdData) =>
   async function (dispatch, getState, { APIService }) {
-    dispatch(updateAdReq());
     try {
+      handleImageUpload(newAdData.imageData);
+
+      dispatch(updateAdReq());
       await APIService.putAd(adId, newAdData);
       dispatch(updateAdSuccess());
       // dispatch(showPopUp)
@@ -123,6 +146,30 @@ export const updateAd = (adId, newAdData) =>
     } catch (error) {
       console.log(error);
       dispatch(updateAdFail(error));
+    }
+  };
+
+const deleteAdReq = () => ({
+  type: ACTION_TYPES.DELETE_AD_REQUEST,
+});
+const deleteAdSuccess = () => ({
+  type: ACTION_TYPES.DELETE_AD_SUCCESS,
+});
+const deleteAdFail = (error) => ({
+  type: ACTION_TYPES.DELETE_AD_FAILURE,
+  error,
+});
+export const deleteAd = (adId) =>
+  async function (dispatch, getState, { APIService }) {
+    dispatch(deleteAdReq());
+    try {
+      await APIService.deleteAd(adId);
+      dispatch(deleteAdSuccess());
+      // dispatch(showPopUp)
+      dispatch(push('/myaccount'));
+    } catch (error) {
+      console.log(error);
+      dispatch(deleteAdFail(error));
     }
   };
 

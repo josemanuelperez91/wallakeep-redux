@@ -4,7 +4,7 @@ import { createAd } from '../../store/actions';
 
 function mapDispatchToProps(dispatch) {
   return {
-    createAd: (params) => dispatch(createAd(params)),
+    createAd: (adData, username) => dispatch(createAd(adData, username)),
   };
 }
 

@@ -21,6 +21,7 @@ const config = {
   TAGS: API_URL + 'tags',
   AD_LIMIT_PER_PAGE: '15',
   SUPPORTED_LOCALES: ['en', 'es'],
+  AD_IMAGE_BUCKET_NAME: 'images/',
 };
 
 export default config;

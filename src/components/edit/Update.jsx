@@ -9,7 +9,7 @@ import { Translate } from 'react-redux-i18n';
 import Navbar from '../navbar/connectedNavbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAdDetails, fetchTags } from '../../store/actions';
-import firebase from '../../config/firebase';
+import firebase from '../../config/firebaseStore';
 
 const _ = require('lodash');
 
@@ -18,6 +18,7 @@ const storageRef = storage.ref();
 
 export default function Update({
   updateAd,
+  deleteAd,
   match: {
     params: { ID },
   },
@@ -28,16 +29,7 @@ export default function Update({
       const imageUpload = imagesRef.putString(adData.image, 'data_url');
       imageUpload.on(
         'state_changed',
-        function (snapshot) {
-          switch (snapshot.state) {
-            case firebase.storage.TaskState.PAUSED:
-              console.log('Upload is paused');
-              break;
-            case firebase.storage.TaskState.RUNNING:
-              console.log('Upload is running');
-              break;
-          }
-        },
+        function (snapshot) {},
         function (error) {
           console.error(error);
         },
@@ -69,14 +61,27 @@ export default function Update({
 
   const initialValue = { ...adDetails };
 
+  const onDelete = () => {
+    const confirmDelete = window.confirm('Delete this Ad?');
+
+    if (confirmDelete) {
+      deleteAd();
+    }
+  };
+
   if (!_.isEmpty(adDetails)) {
     return (
       <div className="Edit">
         <Navbar></Navbar>
-        <h1>Update</h1>
+        <h1>
+          <Translate value="Update.title"></Translate>
+        </h1>
         <Form onSubmit={onSubmit} initialValue={initialValue}>
           <Editor availableTags={tags} />
         </Form>
+        <button id="Delete" onClick={onDelete}>
+          <Translate value="Update.deleteButton"></Translate>
+        </button>
       </div>
     );
   } else {

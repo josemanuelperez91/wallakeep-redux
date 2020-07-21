@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import './Detail.css';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAdDetails } from '../../store/actions';
+import Navbar from '../navbar/connectedNavbar';
+import { Translate } from 'react-redux-i18n';
+
 const _ = require('lodash');
 function Detail({
   match: {
@@ -19,21 +21,49 @@ function Detail({
   if (!_.isEmpty(adDetails)) {
     return (
       <div className="Detail">
-        <h1>{adDetails.name}</h1>
-        <img alt={adDetails.name} src={adDetails.photo} />
-        <p>Type: {adDetails.sale ? 'Sale' : 'Purchase'}</p>
-        <p>Price: {adDetails.price} €</p>
-        <p id="description">{adDetails.description}</p>
-        Tags:
-        <ul>
-          {adDetails.tags.map((tag) => {
-            return <li key={tag}>{tag}</li>;
-          })}
-        </ul>
-        <p>Author: {adDetails.username}</p>
-        <button>
-          <Link to="/home">Back</Link>
-        </button>
+        <Navbar></Navbar>
+        <table>
+          <thead></thead>
+          <tbody>
+            <tr>
+              <td rowSpan={3}>
+                <img alt={adDetails.name} src={adDetails.image} />
+              </td>
+              <td colSpan={3}>
+                <h1>{adDetails.name}</h1>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={3}>
+                <Translate value="AdEditor.description"></Translate>:
+                <p id="description">{adDetails.description}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Translate value="AdEditor.type"></Translate>:{' '}
+                <p>{adDetails.sale ? 'Sale' : 'Purchase'}</p>
+              </td>
+              <td>
+                <Translate value="AdEditor.price"></Translate>:
+                <p>{adDetails.price} €</p>
+              </td>
+
+              <td>
+                <Translate value="AdEditor.tags"></Translate>:
+                <ul>
+                  {adDetails.tags.map((tag) => {
+                    return <li key={tag}>{tag}</li>;
+                  })}
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <Translate value="AdDetail.publisher"></Translate>:{' '}
+        <a id="publisher" href={'/users/' + adDetails.username}>
+          {adDetails.username}
+        </a>
       </div>
     );
   } else {
