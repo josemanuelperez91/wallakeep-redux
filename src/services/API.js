@@ -40,24 +40,6 @@ export function signUp(body) {
       }
     });
 }
-export function recoverPass(email) {
-  return fetch(config.RECOVER, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'post',
-    body: JSON.stringify(email),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((result) => {
-      if (!result.success) {
-        const msg = result.error;
-        throw new Error(msg);
-      }
-    });
-}
 
 export function getTags(query) {
   const url = new URL(config.TAGS);

@@ -1,31 +1,50 @@
 {
   "Login": {
-    "Title": "Acceso",
-    "Submit": "Entrar",
-    "Cancel": "No tengo una cuenta",
+    "title": "Acceso",
+    "submit": "Entrar",
+    "cancel": "No tengo una cuenta",
     "usernameInputPlaceholder": "nombre de usuario",
-    "passwordInputPlaceholder": "contraseña",
-    "Forgot": "¿Olvidaste tu contraseña?"
+    "passwordInputPlaceholder": "contraseña"
   },
   "Register": {
-    "Title": "Registro",
-    "Submit": "Crear cuenta",
-    "Cancel": "Ya tengo una cuenta",
+    "title": "Registro",
+    "submit": "Crear cuenta",
+    "cancel": "Ya tengo una cuenta",
     "usernameInputPlaceholder": "nombre de usuario",
     "passwordInputPlaceholder": "contraseña",
     "passwordRInputPlaceholder": "repetir contraseña",
     "emailInputPlaceholder": "correo electrónico"
   },
-  "Recovery": {
-    "Title": "Recuperación de constraseña",
-    "Submit": "Solicitar",
-    "Cancel": "Volver"
-  },
   "AdEditor": {
     "name": "Nombre",
-    "selecttag": "Selecciona etiquetas"
+    "tags": "Etiquetas",
+    "sell": "Venta",
+    "buy": "Compra",
+    "description": "Descripción",
+    "type": "Tipo",
+    "price": "Precio"
   },
   "AdFilter": {
-    "minprice": "Precio Mínimo"
+    "minPrice": "Precio Mínimo",
+    "maxPrice": "Precio Máximo",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "page": "Página",
+    "selectTag": "Etiqueta",
+    "all": "Todo"
+  },
+  "AdDetail": {
+    "publishedBy": "Publicado por"
+  },
+  "Navbar": {
+    "sigout": "Cerrar",
+    "home": "Inicio",
+    "signin": "Entrar",
+    "signup": "Registrarse"
+  },
+  "User": {
+    "title": "Anuncios de %{username}",
+    "update": "Actualizar",
+    "create": "Nuevo Anuncio"
   }
 }

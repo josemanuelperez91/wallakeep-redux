@@ -8,14 +8,14 @@ export default function Navbar({ signOut, username, isLoggedIn }) {
     return (
       <nav>
         <button id="signOut" onClick={signOut}>
-          Sign Out
+          <Translate value="Navbar.sigout"></Translate>
         </button>
         <Link to={'/myaccount'}>
           <button id="user">{username}</button>
         </Link>
         <Link to="/home">
           <button id="home">
-            <Translate value="Navbar.Home" />
+            <Translate value="Navbar.home" />
           </button>
         </Link>
       </nav>
@@ -24,14 +24,19 @@ export default function Navbar({ signOut, username, isLoggedIn }) {
     return (
       <nav>
         <Link to="/login">
-          <button id="signIn">Sign In</button>
+          <button id="signIn">
+            <Translate value="Navbar.signin" />
+          </button>
         </Link>
-
         <Link to="/register">
-          <button id="signUp">Sign Up</button>
+          <button id="signUp">
+            <Translate value="Navbar.signup" />
+          </button>
         </Link>
         <Link to="/home">
-          <button id="home">Home</button>
+          <button id="home">
+            <Translate value="Navbar.home" />
+          </button>
         </Link>
       </nav>
     );

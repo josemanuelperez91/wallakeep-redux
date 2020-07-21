@@ -22,10 +22,6 @@ export const SIGN_UP_REQUEST = 'wallakeep/Register/SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'wallakeep/Register/SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'wallakeep/Register/SIGN_UP_FAILURE';
 
-export const RECOVER_REQUEST = 'wallakeep/Recovery/RECOVER_REQUEST';
-export const RECOVER_SUCCESS = 'wallakeep/Recovery/RECOVER_SUCCESS';
-export const RECOVER_FAILURE = 'wallakeep/Recovery/RECOVER_FAILURE';
-
 export const SIGN_OUT = 'wallakeep/Navbar/SIGN_OUT';
 export const CHANGE_LANGUAGE = 'wallakeep/FootBar/CHANGE_LANGUAGE';
 

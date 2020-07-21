@@ -1,24 +1,19 @@
 {
   "Login": {
-    "Title": "Login",
-    "Submit": "Sign In",
-    "Cancel": "I dont have an accout",
+    "title": "Login",
+    "submit": "Sign In",
+    "cancel": "I dont have an accout",
     "usernameInputPlaceholder": "username",
     "passwordInputPlaceholder": "password",
     "Forgot": "Forgot your password?"
   },
   "Register": {
-    "Title": "Register",
-    "Submit": "Sign Up",
-    "Cancel": "I already have an accout",
+    "title": "Register",
+    "submit": "Sign Up",
+    "cancel": "I already have an accout",
     "usernameInputPlaceholder": "username",
     "passwordInputPlaceholder": "password",
     "passwordRInputPlaceholder": "repeat password",
     "emailInputPlaceholder": "email"
-  },
-  "Recovery": {
-    "Title": "Password Recovery",
-    "Submit": "Send recovery mail",
-    "Cancel": "Return"
   }
 }

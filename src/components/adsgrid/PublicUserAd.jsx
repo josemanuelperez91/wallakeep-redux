@@ -10,9 +10,9 @@ const Ad = (props) => {
   return (
     <div className="Ad">
       <Link to={'detail/' + fullUrl}>
-        <div>
+        <div className={props.data.sale ? 'sell' : 'buy'}>
           <h2>{props.data.name}</h2>
-          <p className={props.data.type}>{props.data.price} €</p>
+          <p>{props.data.price} €</p>
           <img alt={props.data.name} src={props.data.image} />
         </div>
       </Link>

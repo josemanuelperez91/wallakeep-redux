@@ -60,7 +60,7 @@ function Detail({
             </tr>
           </tbody>
         </table>
-        <Translate value="AdDetail.publisher"></Translate>:{' '}
+        <Translate value="AdDetail.publishedBy"></Translate>:{' '}
         <a id="publisher" href={'/users/' + adDetails.username}>
           {adDetails.username}
         </a>

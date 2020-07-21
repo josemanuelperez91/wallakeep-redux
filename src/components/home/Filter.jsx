@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Filter.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTags } from '../../store/actions';
-import { Translate, I18n } from 'react-redux-i18n';
+import { Translate } from 'react-redux-i18n';
 
 export default function Filter({ initialValue, onSubmit, adsLength }) {
   const [formData, setFormData] = useState({
@@ -66,31 +66,30 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
     <form className="Filter" onSubmit={handleSubmit}>
       <Translate value="AdEditor.name"></Translate>
       <input name="name" onChange={handleInput} type="text" />
-      <Translate value="AdFilter.minprice"></Translate>
+      <Translate value="AdFilter.minPrice"></Translate>
       <input
         onChange={handleInput}
         name="min"
         type="number"
         max={formData.max}
       />
-      <Translate value="AdFilter.maxprice"></Translate>
+      <Translate value="AdFilter.maxPrice"></Translate>
       <input
         onChange={handleInput}
         name="max"
         type="number"
         min={formData.min}
       />
-      <label>
+      <label className={'radio-sell'}>
         <Translate value="AdEditor.sell" />
         <input value="true" onChange={handleInput} name="sale" type="radio" />
       </label>
-      <label>
+      <label className={'radio-buy'}>
         <Translate value="AdEditor.buy" />
         <input value="false" onChange={handleInput} name="sale" type="radio" />
       </label>
       <label>
         <Translate value="AdFilter.all" />
-
         <input
           value=""
           onChange={handleInput}
@@ -99,10 +98,11 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
           defaultChecked={true}
         />
       </label>
+      <br />
+      <Translate value="AdFilter.selectTag" />
+
       <select defaultValue={tags[0]} onChange={handleInput} name="tag">
-        <option key={null} value={''}>
-          {I18n.t('AdEditor.selecttag')}
-        </option>
+        <option key={null} value={''}></option>
         {tags.map((tag) => {
           return (
             <option key={tag} value={tag ? tag : ''}>
@@ -122,16 +122,18 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
         onClick={previousPage}
         type="button"
       >
-        Previous
+        <Translate value="AdFilter.previous" />
       </button>
-      <div className="pagination ">Page: {page}</div>
+      <div className="pagination ">
+        <Translate value="AdFilter.page" />: {page}
+      </div>
       <button
         className="pagination"
         disabled={adsLength < 15 || formData.filterIsChanged ? 'disabled' : ''}
         onClick={nextPage}
         type="button"
       >
-        Next
+        <Translate value="AdFilter.next" />
       </button>
     </form>
   );

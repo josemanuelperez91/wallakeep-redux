@@ -25,7 +25,7 @@ function Register({ signUp }) {
   return (
     <div className="Register">
       <h1>
-        <Translate value="Register.Title" />
+        <Translate value="Register.title" />
       </h1>
       <Form
         initialValue={{
@@ -76,13 +76,13 @@ function Register({ signUp }) {
           name="repeatPassword"
         ></Input>
         <Button className="greenButton" type="submit">
-          <Translate value="Register.Submit" />
+          <Translate value="Register.submit" />
         </Button>
       </Form>
 
       <Link to="/login">
         <button type="button">
-          <Translate value="Register.Cancel" />
+          <Translate value="Register.cancel" />
         </button>
       </Link>
     </div>

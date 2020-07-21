@@ -245,27 +245,6 @@ export const getAdDetails = (AdUri) =>
       dispatch(getAdDetailsFail(error));
     }
   };
-const recoverReq = () => ({
-  type: ACTION_TYPES.RECOVER_REQUEST,
-});
-const recoverSuccess = (username) => ({
-  type: ACTION_TYPES.RECOVER_SUCCESS,
-  username,
-});
-const recoverFail = (error) => ({
-  type: ACTION_TYPES.RECOVER_FAILURE,
-  error,
-});
-export const recoverPass = (email) =>
-  async function (dispatch, getState, { APIService }) {
-    dispatch(recoverReq());
-    try {
-      await APIService.recoverPass(email);
-      dispatch(recoverSuccess());
-    } catch (error) {
-      dispatch(recoverFail(error));
-    }
-  };
 
 const signUpReq = () => ({
   type: ACTION_TYPES.SIGN_UP_REQUEST,

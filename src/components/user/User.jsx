@@ -9,6 +9,7 @@ import config from '../../config';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserAds } from '../../store/actions';
+import { Translate } from 'react-redux-i18n';
 
 function User({
   match: {
@@ -21,11 +22,13 @@ function User({
 
   const dispatch = useDispatch();
   let type = 'user';
+  let limit = config.AD_LIMIT_PER_PAGE;
   if (currentIsLoggedIn && currentUser === username) {
     type = 'private';
+    limit = '0';
   }
   const defaultFilter = useRef({
-    limit: config.AD_LIMIT_PER_PAGE,
+    limit,
   });
 
   useEffect(() => {
@@ -35,10 +38,14 @@ function User({
   return (
     <div className="User">
       <Navbar></Navbar>
-      <h1>{username} Ads</h1>
+      <h1>
+        <Translate value="User.title" username={username} />
+      </h1>
       {type === 'private' && (
         <button id="createAd" className="greenButton">
-          <Link to="/create">New Ad</Link>
+          <Link to="/create">
+            <Translate value="User.create" />
+          </Link>
         </button>
       )}
 

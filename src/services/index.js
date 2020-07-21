@@ -6,7 +6,6 @@ import {
   putAd,
   signIn,
   signUp,
-  recoverPass,
   getUserAds,
   deleteAd,
 } from './API';
@@ -19,7 +18,6 @@ export default {
   putAd,
   signIn,
   signUp,
-  recoverPass,
   getUserAds,
   deleteAd,
 };

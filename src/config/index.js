@@ -17,7 +17,6 @@ const config = {
   REGISTER: API_URL + 'register',
   LOGIN: API_URL + 'authenticate',
   ADS: API_URL + 'adverts',
-  RECOVER: API_URL + 'recover',
   TAGS: API_URL + 'tags',
   AD_LIMIT_PER_PAGE: '15',
   SUPPORTED_LOCALES: ['en', 'es'],

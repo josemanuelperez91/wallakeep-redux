@@ -13,7 +13,7 @@ function Login({ signIn }) {
   return (
     <div className="Login">
       <h1>
-        <Translate value="Login.Title" />
+        <Translate value="Login.title" />
       </h1>
       <Form initialValue={{ username: '', password: '' }} onSubmit={onSubmit}>
         <Translate value="Login.usernameInputPlaceholder" />
@@ -34,20 +34,15 @@ function Login({ signIn }) {
           }}
         ></Input>
         <Button className="greenButton" type="submit">
-          <Translate value="Login.Submit" />
+          <Translate value="Login.submit" />
         </Button>
       </Form>
 
       <Link to="/register">
         <button type="button">
-          <Translate value="Login.Cancel" />
+          <Translate value="Login.cancel" />
         </button>
       </Link>
-      {/* <Link to="/recovery">
-        <button className="redButton" type="button">
-          <Translate value="Login.Forgot" />
-        </button>
-      </Link> */}
     </div>
   );
 }

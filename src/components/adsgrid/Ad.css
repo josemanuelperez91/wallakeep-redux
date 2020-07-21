@@ -30,3 +30,6 @@
 .Ad .publisher a {
   text-decoration: underline;
 }
+.Ad .publisher {
+  font-size: 0.8rem;
+}
