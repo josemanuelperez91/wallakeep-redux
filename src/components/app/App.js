@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import Register from '../register/connectedRegister';
-import Recovery from '../recovery/connectedRecovery';
-import Login from '../login/connectedLogin';
+import Register from '../register';
+import Login from '../login';
 import Home from '../home/Home';
 import Detail from '../detail/Detail';
 import User from '../user/User';
@@ -11,8 +10,9 @@ import Update from '../edit/connectedUpdate';
 import Create from '../edit/connectedCreate';
 import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import AuthRoute from '../auth/connectedAuthRoute';
+import AuthRoute from '../auth';
 import { ConnectedRouter } from 'connected-react-router';
+import Footer from '../footer';
 
 function App({ store, history }) {
   return (
@@ -21,7 +21,6 @@ function App({ store, history }) {
         <div className="App">
           <Switch>
             <Route path="/register" component={Register} />
-            <Route path="/recovery" component={Recovery} />
             <Route path="/login" component={Login} />
             <Route path="/users/:username" component={User} />
             <Route path="/home" component={Home} />
@@ -31,6 +30,7 @@ function App({ store, history }) {
             <AuthRoute path="/create" component={Create} />
             <Route path="/" component={Home} />
           </Switch>
+          <Footer></Footer>
         </div>
       </ConnectedRouter>
     </Provider>

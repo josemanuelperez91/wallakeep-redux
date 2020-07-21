@@ -6,18 +6,9 @@ import Form from '../form/Form';
 import Input from '../form/Input';
 import Button from '../form/Button';
 
-//Para el navbar de idiomas
-import config from '../../config';
-
-const { SUPPORTED_LOCALES } = config;
-
-function Register({ signUp, changeLocale }) {
+function Register({ signUp }) {
   const onSubmit = (formData) => {
     signUp(formData);
-  };
-  const handleChangeLocale = (event, newLocale) => {
-    event.preventDefault();
-    changeLocale(newLocale);
   };
 
   const checkRepeatPassword = () => {
@@ -51,8 +42,8 @@ function Register({ signUp, changeLocale }) {
           otherProps={{
             required: true,
             pattern: '[a-zA-Z0-9-]+',
-            minlength: '4',
-            maxlength: '10',
+            minLength: '4',
+            maxLength: '10',
             title: 'Username must be 4-10 alphanumeric characters (no spaces)',
           }}
           name="username"
@@ -94,23 +85,6 @@ function Register({ signUp, changeLocale }) {
           <Translate value="Register.Cancel" />
         </button>
       </Link>
-
-      <footer>
-        <ul>
-          {SUPPORTED_LOCALES.map((locale) => {
-            return (
-              <li key={locale}>
-                <div
-                  className="link"
-                  onClick={(event) => handleChangeLocale(event, locale)}
-                >
-                  {locale}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </footer>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './Detail.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAdDetails } from '../../store/actions';
-import Navbar from '../navbar/connectedNavbar';
+import Navbar from '../navbar';
 import { Translate } from 'react-redux-i18n';
 
 const _ = require('lodash');

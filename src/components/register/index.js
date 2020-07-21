@@ -8,9 +8,5 @@ function mapDispatchToProps(dispatch) {
     changeLocale: (locale) => dispatch(changeLocale(locale)),
   };
 }
-// const mapStateToProps = (state) => {
-//   return {
-//     t: getTranslations(state, 'Login'),
-//   };
-// };
+
 export default connect(null, mapDispatchToProps)(Regiser);

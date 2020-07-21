@@ -1,0 +1,5 @@
+.Footer {
+  font-size: 0.7rem;
+  background-color: darkgrey;
+  width: calc(100% + 40px);
+}

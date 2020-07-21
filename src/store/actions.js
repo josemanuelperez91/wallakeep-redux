@@ -5,26 +5,16 @@ import config from '../config';
 import sha256 from 'crypto-js/sha256';
 import firebase from '../config/firebaseStore';
 
-const handleImageUpload = (imageData) => {
+async function handleImageUpload(imageData) {
   const storage = firebase.storage();
   const storageRef = storage.ref();
 
   const imageName = sha256(imageData);
   const imagesRef = storageRef.child(config.AD_IMAGE_BUCKET_NAME + imageName);
-  const imageUpload = imagesRef.putString(imageData, 'data_url');
-  imageUpload.on(
-    'state_changed',
-    function (snapshot) {},
-    function (error) {
-      console.error(error);
-    },
-    function () {
-      imageUpload.snapshot.ref.getDownloadURL().then(function (imageURL) {
-        return imageURL;
-      });
-    }
-  );
-};
+  const imageUploadSnapshot = await imagesRef.putString(imageData, 'data_url');
+  const uploadedImageURL = await imageUploadSnapshot.ref.getDownloadURL();
+  return uploadedImageURL;
+}
 
 const fetchAdsReq = () => ({
   type: ACTION_TYPES.FETCH_ADS_REQUEST,
@@ -61,11 +51,11 @@ const fetchTagsFail = (error) => ({
   error,
 });
 
-export const fetchTags = () =>
+export const fetchTags = (query) =>
   async function (dispatch, getState, { APIService }) {
     dispatch(fetchTagsReq());
     try {
-      const response = await APIService.getTags();
+      const response = await APIService.getTags(query);
       dispatch(fetchTagsSuccess(response));
     } catch (error) {
       dispatch(fetchTagsFail(error));
@@ -83,11 +73,11 @@ const fetchUserAdsFail = (error) => ({
   type: ACTION_TYPES.FETCH_USER_ADS_FAILURE,
   error,
 });
-export const fetchUserAds = (username) =>
+export const fetchUserAds = (username, query) =>
   async function (dispatch, getState, { APIService }) {
     dispatch(fetchUserAdsReq());
     try {
-      const response = await APIService.getUserAds(username);
+      const response = await APIService.getUserAds(username, query);
       dispatch(fetchUserAdsSuccess(response));
     } catch (error) {
       dispatch(fetchUserAdsFail(error));
@@ -96,22 +86,39 @@ export const fetchUserAds = (username) =>
 const createAdReq = () => ({
   type: ACTION_TYPES.CREATE_AD_REQUEST,
 });
-const createAdSuccess = (ad) => ({
+const createAdSuccess = (adDetails) => ({
   type: ACTION_TYPES.CREATE_AD_SUCCESS,
-  ad,
+  adDetails,
 });
 const createAdFail = (error) => ({
   type: ACTION_TYPES.CREATE_AD_FAILURE,
   error,
 });
 
-export const createAd = (newAdData) =>
+export const createAd = (newAdData, username) =>
   async function (dispatch, getState, { APIService }) {
-    dispatch(createAdReq());
     try {
-      const postedAd = await APIService.postAd(newAdData);
+      const uploadedImageURL = await handleImageUpload(newAdData.image);
+      const { name, price, description, sale, tags } = newAdData;
+      dispatch(createAdReq());
+      const postedAd = await APIService.postAd({
+        name,
+        price,
+        description,
+        sale,
+        tags,
+        image: uploadedImageURL,
+        username,
+      });
       dispatch(createAdSuccess(postedAd.result));
-      dispatch(push('/home'));
+      const confirmHome = window.confirm(
+        'Ad published succesfully, return to your panel?'
+      );
+      if (confirmHome) {
+        dispatch(push('/myaccount'));
+      } else {
+        dispatch(push('/create'));
+      }
     } catch (error) {
       dispatch(createAdFail(error));
     }
@@ -125,8 +132,9 @@ export const changeLocale = (locale) => {
 export const updateAdReq = () => ({
   type: ACTION_TYPES.UPDATE_AD_REQUEST,
 });
-export const updateAdSuccess = () => ({
+export const updateAdSuccess = (adDetails) => ({
   type: ACTION_TYPES.UPDATE_AD_SUCCESS,
+  adDetails,
 });
 export const updateAdFail = (error) => ({
   type: ACTION_TYPES.UPDATE_AD_FAILURE,
@@ -135,16 +143,31 @@ export const updateAdFail = (error) => ({
 export const updateAd = (adId, newAdData) =>
   async function (dispatch, getState, { APIService }) {
     try {
-      handleImageUpload(newAdData.imageData);
+      let uploadedImageURL = newAdData.image;
+      if (newAdData.image.startsWith('data:')) {
+        uploadedImageURL = await handleImageUpload(newAdData.image);
+      }
 
+      const { name, price, description, sale, tags } = newAdData;
       dispatch(updateAdReq());
-      await APIService.putAd(adId, newAdData);
-      dispatch(updateAdSuccess());
+      const sanetizedAdData = {
+        name,
+        price,
+        description,
+        sale,
+        tags,
+        image: uploadedImageURL,
+      };
+      await APIService.putAd(adId, sanetizedAdData);
+      dispatch(updateAdSuccess(sanetizedAdData));
       // dispatch(showPopUp)
-      alert('Anuncio actualizado');
-      // dispatch(push('/home'));
+      const confirmHome = window.confirm(
+        'Ad updated succesfully, return to your panel?'
+      );
+      if (confirmHome) {
+        dispatch(push('/myaccount'));
+      }
     } catch (error) {
-      console.log(error);
       dispatch(updateAdFail(error));
     }
   };
@@ -196,6 +219,7 @@ export const signIn = (signInData) =>
       dispatch(push('/home'));
     } catch (error) {
       dispatch(signInFail(error));
+      alert('Incorrect Log In Data');
     }
   };
 
@@ -264,8 +288,6 @@ export const signUp = (signUpData) =>
       alert('cuenta creada ve a /login');
     } catch (error) {
       dispatch(signUpFail(error));
-      // dispatch(showPopUp)
-      alert(error);
     }
   };
 export const signOut = () =>

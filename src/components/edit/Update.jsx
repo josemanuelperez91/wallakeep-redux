@@ -6,15 +6,11 @@ import Editor from './Editor';
 
 import { Translate } from 'react-redux-i18n';
 
-import Navbar from '../navbar/connectedNavbar';
+import Navbar from '../navbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAdDetails, fetchTags } from '../../store/actions';
-import firebase from '../../config/firebaseStore';
 
 const _ = require('lodash');
-
-const storage = firebase.storage();
-const storageRef = storage.ref();
 
 export default function Update({
   updateAd,
@@ -24,26 +20,7 @@ export default function Update({
   },
 }) {
   const onSubmit = (adData) => {
-    if (adData.image.startsWith('data:')) {
-      const imagesRef = storageRef.child('images/' + ID);
-      const imageUpload = imagesRef.putString(adData.image, 'data_url');
-      imageUpload.on(
-        'state_changed',
-        function (snapshot) {},
-        function (error) {
-          console.error(error);
-        },
-        function () {
-          imageUpload.snapshot.ref.getDownloadURL().then(function (imageURL) {
-            const { name, price, description, sale, tags } = adData;
-            updateAd({ name, price, description, sale, tags, image: imageURL });
-          });
-        }
-      );
-    } else {
-      const { name, price, description, sale, tags, image } = adData;
-      updateAd({ name, price, description, sale, tags, image });
-    }
+    updateAd(adData);
   };
 
   const adDetails = useSelector((store) => store.adDetails);
@@ -56,7 +33,7 @@ export default function Update({
   }, [dispatch, ID]);
 
   useEffect(() => {
-    dispatch(fetchTags());
+    dispatch(fetchTags({ all: true }));
   }, [dispatch]);
 
   const initialValue = { ...adDetails };

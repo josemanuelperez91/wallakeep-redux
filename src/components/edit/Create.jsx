@@ -6,7 +6,7 @@ import Editor from './Editor';
 
 import { Translate } from 'react-redux-i18n';
 
-import Navbar from '../navbar/connectedNavbar';
+import Navbar from '../navbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTags } from '../../store/actions';
 
@@ -29,13 +29,13 @@ export default function Create({ createAd }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTags());
+    dispatch(fetchTags({ all: true }));
   }, [dispatch]);
   return (
     <div className="Edit">
       <Navbar></Navbar>
       <h1>
-        <Translate value={Create.title}></Translate>
+        <Translate value={'Create.title'}></Translate>
       </h1>
       <Form onSubmit={onSubmit} initialValue={initialValue}>
         <Editor availableTags={tags}></Editor>

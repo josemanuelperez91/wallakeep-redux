@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './User.css';
 
 import AdsGrid from '../adsgrid/AdsGrid';
-import Navbar from '../navbar/connectedNavbar';
+import Navbar from '../navbar';
 
 import { Link } from 'react-router-dom';
+import config from '../../config';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserAds } from '../../store/actions';
@@ -23,10 +24,13 @@ function User({
   if (currentIsLoggedIn && currentUser === username) {
     type = 'private';
   }
+  const defaultFilter = useRef({
+    limit: config.AD_LIMIT_PER_PAGE,
+  });
 
   useEffect(() => {
-    dispatch(fetchUserAds(username));
-  }, [dispatch, username]);
+    dispatch(fetchUserAds(username, defaultFilter.current));
+  }, [dispatch, username, defaultFilter]);
 
   return (
     <div className="User">

@@ -10,16 +10,16 @@ const initialState = {
   tags: [],
 };
 
-const updateAd = (ads, newAd) => {
-  return ads.map((ad) => {
-    if (ad._id === newAd._id) {
-      return {
-        ...newAd,
-      };
-    }
-    return ad;
-  });
-};
+// const updateAd = (ads, newAd) => {
+//   return ads.map((ad) => {
+//     if (ad._id === newAd._id) {
+//       return {
+//         ...newAd,
+//       };
+//     }
+//     return ad;
+//   });
+// };
 
 export function ads(state = initialState.ads, action) {
   switch (action.type) {
@@ -33,15 +33,15 @@ export function ads(state = initialState.ads, action) {
       const newState = state.concat(action.ad);
       return newState;
 
-    case ACTION_TYPES.UPDATE_AD_SUCCESS:
-      return updateAd(state, action.ad);
-
     default:
       return state;
   }
 }
 export function adDetails(state = initialState.adDetails, action) {
   switch (action.type) {
+    case ACTION_TYPES.UPDATE_AD_SUCCESS:
+      return action.adDetails;
+
     case ACTION_TYPES.GET_AD_DETAIL_SUCCESS:
       return action.adDetails;
     default:

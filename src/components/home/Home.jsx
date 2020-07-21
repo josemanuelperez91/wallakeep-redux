@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState } from 'react';
 import './Home.css';
 
 import AdsGrid from '../adsgrid/AdsGrid';
-import Navbar from '../navbar/connectedNavbar';
+import Navbar from '../navbar';
 import Filter from './Filter';
 
 import { useSelector, useDispatch } from 'react-redux';

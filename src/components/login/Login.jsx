@@ -6,18 +6,9 @@ import Form from '../form/Form';
 import Input from '../form/Input';
 import Button from '../form/Button';
 
-//Para el navbar de idiomas
-import config from '../../config';
-
-const { SUPPORTED_LOCALES } = config;
-
-function Login({ signIn, changeLocale }) {
+function Login({ signIn }) {
   const onSubmit = (formData) => {
     signIn(formData);
-  };
-  const handleChangeLocale = (event, newLocale) => {
-    event.preventDefault();
-    changeLocale(newLocale);
   };
   return (
     <div className="Login">
@@ -26,9 +17,22 @@ function Login({ signIn, changeLocale }) {
       </h1>
       <Form initialValue={{ username: '', password: '' }} onSubmit={onSubmit}>
         <Translate value="Login.usernameInputPlaceholder" />
-        <Input type="text" name="username"></Input>
+        <Input
+          type="text"
+          name="username"
+          otherProps={{
+            required: true,
+          }}
+        ></Input>
         <Translate value="Login.passwordInputPlaceholder" />
-        <Input type="password" name="password"></Input>
+        <Input
+          type="password"
+          name="password"
+          otherProps={{
+            required: true,
+            autoComplete: 'password',
+          }}
+        ></Input>
         <Button className="greenButton" type="submit">
           <Translate value="Login.Submit" />
         </Button>
@@ -44,23 +48,6 @@ function Login({ signIn, changeLocale }) {
           <Translate value="Login.Forgot" />
         </button>
       </Link> */}
-
-      <footer>
-        <ul>
-          {SUPPORTED_LOCALES.map((locale) => {
-            return (
-              <li key={locale}>
-                <div
-                  className="link"
-                  onClick={(event) => handleChangeLocale(event, locale)}
-                >
-                  {locale}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </footer>
     </div>
   );
 }

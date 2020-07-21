@@ -7,3 +7,8 @@
   margin: 10px 0px;
   align-items: baseline;
 }
+@media only screen and (max-width: 542px) {
+  .AdsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

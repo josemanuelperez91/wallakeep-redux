@@ -59,8 +59,11 @@ export function recoverPass(email) {
     });
 }
 
-export function getTags() {
-  return fetch(config.TAGS, {
+export function getTags(query) {
+  const url = new URL(config.TAGS);
+  url.search = new URLSearchParams(query);
+
+  return fetch(url, {
     method: 'get',
   })
     .then((response) => {
@@ -85,9 +88,9 @@ export function getAds(query) {
     return response.json();
   });
 }
-export function getUserAds(username) {
+export function getUserAds(username, query) {
   const url = new URL(config.ADS);
-  url.search = new URLSearchParams({ username });
+  url.search = new URLSearchParams({ username, ...query });
 
   return fetch(url, {
     method: 'get',

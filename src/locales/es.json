@@ -20,5 +20,12 @@
     "Title": "Recuperación de constraseña",
     "Submit": "Solicitar",
     "Cancel": "Volver"
+  },
+  "AdEditor": {
+    "name": "Nombre",
+    "selecttag": "Selecciona etiquetas"
+  },
+  "AdFilter": {
+    "minprice": "Precio Mínimo"
   }
 }

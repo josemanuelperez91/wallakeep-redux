@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Filter.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTags } from '../../store/actions';
+import { Translate, I18n } from 'react-redux-i18n';
 
 export default function Filter({ initialValue, onSubmit, adsLength }) {
   const [formData, setFormData] = useState({
     ...initialValue,
   });
-
+  const tags = useSelector((store) => store.tags);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTags());
+  }, [dispatch]);
   const previousPage = () => {
     let currentSkip = formData.skip;
     currentSkip = Number(currentSkip) - 15;
@@ -27,15 +34,15 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
       skip: String(currentSkip),
     });
   };
-  const isFirstRun = useRef(true);
+  const running = useRef(true);
 
   useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
+    if (running.current) {
+      running.current = false;
     } else {
       onSubmit(formData);
     }
-  }, [formData.skip, onSubmit, formData]);
+  }, [onSubmit, formData]);
 
   const handleInput = (event) => {
     setFormData({
@@ -51,45 +58,39 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
     onSubmit(formData);
   };
 
-  const tags = [];
-  const loadedTags = tags.filter((tag) => tag);
-
   const page = formData.skip
     ? (Number(formData.skip) + 15) / formData.limit
     : 1;
 
   return (
     <form className="Filter" onSubmit={handleSubmit}>
-      <input
-        name="name"
-        onChange={handleInput}
-        placeholder="Name"
-        type="text"
-      />
+      <Translate value="AdEditor.name"></Translate>
+      <input name="name" onChange={handleInput} type="text" />
+      <Translate value="AdFilter.minprice"></Translate>
       <input
         onChange={handleInput}
         name="min"
         type="number"
-        placeholder="min price"
         max={formData.max}
       />
+      <Translate value="AdFilter.maxprice"></Translate>
       <input
         onChange={handleInput}
         name="max"
         type="number"
-        placeholder="max price"
         min={formData.min}
       />
       <label>
-        Sell
+        <Translate value="AdEditor.sell" />
         <input value="true" onChange={handleInput} name="sale" type="radio" />
       </label>
       <label>
-        Buy
+        <Translate value="AdEditor.buy" />
         <input value="false" onChange={handleInput} name="sale" type="radio" />
       </label>
       <label>
-        All
+        <Translate value="AdFilter.all" />
+
         <input
           value=""
           onChange={handleInput}
@@ -98,11 +99,11 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
           defaultChecked={true}
         />
       </label>
-      <select defaultValue={loadedTags[0]} onChange={handleInput} name="tag">
+      <select defaultValue={tags[0]} onChange={handleInput} name="tag">
         <option key={null} value={''}>
-          {'Select a Tag'}
+          {I18n.t('AdEditor.selecttag')}
         </option>
-        {loadedTags.map((tag) => {
+        {tags.map((tag) => {
           return (
             <option key={tag} value={tag ? tag : ''}>
               {tag}
@@ -110,7 +111,6 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
           );
         })}
       </select>
-      <button id="filterButton">Filter</button>
 
       <button
         className="pagination"
