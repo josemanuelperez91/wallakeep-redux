@@ -22,24 +22,26 @@ export function signUp(body) {
     },
     method: 'post',
     body: JSON.stringify(body),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((result) => {
-      if (!result.success) {
-        let msg = '';
-        if (result.error === 'duplicate') {
-          const key = Object.keys(result.value)[0];
-          const value = result.value[key];
-          msg = result.error + ' ' + key + ' ' + value;
-        } else {
-          msg = result.error;
-        }
-        throw new Error(msg);
-      }
-    });
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error();
+    }
+  });
 }
+
+// .then((result) => {
+//   if (!result.success) {
+//     let msg = '';
+//     if (result.error === 'duplicate') {
+//       const key = Object.keys(result.value)[0];
+//       const value = result.value[key];
+//       msg = result.error + ' ' + key + ' ' + value;
+//     } else {
+//       msg = result.error;
+//     }
+//     throw new Error(msg);
+//   }
+// });
 
 export function getTags(query) {
   const url = new URL(config.TAGS);

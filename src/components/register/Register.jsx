@@ -5,6 +5,9 @@ import { Translate } from 'react-redux-i18n';
 import Form from '../form/Form';
 import Input from '../form/Input';
 import Button from '../form/Button';
+import Header from '../header/Header';
+
+import './Register.css';
 
 function Register({ signUp }) {
   const onSubmit = (formData) => {
@@ -24,6 +27,7 @@ function Register({ signUp }) {
 
   return (
     <div className="Register">
+      <Header></Header>
       <h1>
         <Translate value="Register.title" />
       </h1>
@@ -36,7 +40,7 @@ function Register({ signUp }) {
         }}
         onSubmit={onSubmit}
       >
-        <Translate value="Register.usernameInputPlaceholder" />
+        <Translate value="Login.usernameInput" />
         <Input
           type="text"
           otherProps={{
@@ -48,7 +52,7 @@ function Register({ signUp }) {
           }}
           name="username"
         ></Input>
-        <Translate value="Register.emailInputPlaceholder" />
+        <Translate value="Register.emailInput" />
         <Input
           otherProps={{
             required: true,
@@ -56,16 +60,17 @@ function Register({ signUp }) {
           type="email"
           name="email"
         ></Input>
-        <Translate value="Register.passwordInputPlaceholder" />
+        <Translate value="Login.passwordInput" />
         <Input
           otherProps={{
             required: true,
             autoComplete: 'password',
+            minLength: '6',
           }}
           type="password"
           name="password"
         ></Input>
-        <Translate value="Register.passwordRInputPlaceholder" />
+        <Translate value="Register.passwordRInput" />
         <Input
           otherProps={{
             required: true,

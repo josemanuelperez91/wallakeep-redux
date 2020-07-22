@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import FormContext from './FormContext';
 
 export default function Form({ initialValue, onSubmit, children }) {
-  const [formData, setFormData] = useState({
-    ...initialValue,
-  });
+  const [formData, setFormData] = useState({ ...initialValue });
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-
   const handleSelect = (name, selectedArray) => {
     setFormData({ ...formData, [name]: selectedArray });
   };

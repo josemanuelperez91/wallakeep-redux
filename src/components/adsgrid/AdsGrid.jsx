@@ -6,27 +6,45 @@ import PrivateAd from './PrivateAd';
 import './AdsGrid.css';
 
 export default function AdsGrid({ ads, type }) {
-  const GridFiller = () => {
+  function PublicGrid() {
     return ads.map((ad) => {
-      if (ads !== null) {
-        switch (type) {
-          case 'public':
-            return <PublicAd key={ad._id} data={ad}></PublicAd>;
-          case 'private':
-            return <PrivateAd key={ad._id} data={ad}></PrivateAd>;
-          case 'user':
-            return <PublicUserAd key={ad._id} data={ad}></PublicUserAd>;
-          default:
-            return null;
-        }
-      } else {
-        return <div className="AdsGrid">LOADING ADS...</div>;
-      }
+      return <PublicAd key={ad._id} data={ad}></PublicAd>;
     });
-  };
-  return (
-    <div className="AdsGrid">
-      <GridFiller></GridFiller>
-    </div>
-  );
+  }
+  function PrivateGrid() {
+    return ads.map((ad) => {
+      return <PrivateAd key={ad._id} data={ad}></PrivateAd>;
+    });
+  }
+  function PublicUserAdGrid() {
+    return ads.map((ad) => {
+      return <PublicUserAd key={ad._id} data={ad}></PublicUserAd>;
+    });
+  }
+  if (ads !== null) {
+    switch (type) {
+      case 'public':
+        return (
+          <div className="AdsGrid">
+            <PublicGrid></PublicGrid>
+          </div>
+        );
+      case 'private':
+        return (
+          <div className="AdsGridList">
+            <PrivateGrid></PrivateGrid>
+          </div>
+        );
+      case 'user':
+        return (
+          <div className="AdsGrid">
+            <PublicUserAdGrid></PublicUserAdGrid>
+          </div>
+        );
+      default:
+        return null;
+    }
+  } else {
+    return <div className="AdsGrid">LOADING ADS...</div>;
+  }
 }

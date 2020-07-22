@@ -5,6 +5,8 @@ import { Translate } from 'react-redux-i18n';
 import Form from '../form/Form';
 import Input from '../form/Input';
 import Button from '../form/Button';
+import Header from '../header/Header';
+import './Login.css';
 
 function Login({ signIn }) {
   const onSubmit = (formData) => {
@@ -12,11 +14,13 @@ function Login({ signIn }) {
   };
   return (
     <div className="Login">
+      <Header></Header>
+
       <h1>
         <Translate value="Login.title" />
       </h1>
       <Form initialValue={{ username: '', password: '' }} onSubmit={onSubmit}>
-        <Translate value="Login.usernameInputPlaceholder" />
+        <Translate value="Login.usernameInput" />
         <Input
           type="text"
           name="username"
@@ -24,7 +28,7 @@ function Login({ signIn }) {
             required: true,
           }}
         ></Input>
-        <Translate value="Login.passwordInputPlaceholder" />
+        <Translate value="Login.passwordInput" />
         <Input
           type="password"
           name="password"

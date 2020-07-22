@@ -1,19 +1,57 @@
 {
   "Login": {
-    "title": "Login",
-    "submit": "Sign In",
-    "cancel": "I dont have an accout",
-    "usernameInputPlaceholder": "username",
-    "passwordInputPlaceholder": "password",
-    "Forgot": "Forgot your password?"
+    "title": "Log In",
+    "submit": "Enter",
+    "cancel": "I don't have an account",
+    "usernameInput": "Username",
+    "passwordInput": "Password"
   },
   "Register": {
     "title": "Register",
-    "submit": "Sign Up",
-    "cancel": "I already have an accout",
-    "usernameInputPlaceholder": "username",
-    "passwordInputPlaceholder": "password",
-    "passwordRInputPlaceholder": "repeat password",
-    "emailInputPlaceholder": "email"
+    "submit": "Create Account",
+    "cancel": "I already have an account",
+    "passwordRInput": "Repeat password",
+    "emailInput": "E-mail"
+  },
+  "AdEditor": {
+    "name": "Name",
+    "tags": "Tags",
+    "sell": "Sale",
+    "buy": "Purchase",
+    "description": "Description",
+    "type": "Type",
+    "price": "Price",
+    "submit": "Send"
+  },
+  "AdFilter": {
+    "minPrice": "Min. price",
+    "maxPrice": "Max. price",
+    "next": "Next",
+    "previous": "Previous",
+    "page": "Page",
+    "selectTag": "Tag",
+    "all": "All"
+  },
+  "AdDetail": {
+    "publishedBy": "Published by"
+  },
+  "Navbar": {
+    "sigout": "Sign out",
+    "home": "Home",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "new": "New"
+  },
+  "User": {
+    "title": "%{username}'s advertisements",
+    "update": "Edit/Delete",
+    "you": " (You)"
+  },
+  "Update": {
+    "title": "Edit advertisement",
+    "delete": "Delete"
+  },
+  "Create": {
+    "title": "Publish advertisement"
   }
 }

@@ -226,6 +226,7 @@ export const signIn = (signInData) =>
 const getAdDetailsReq = () => ({
   type: ACTION_TYPES.GET_AD_DETAIL_REQUEST,
 });
+
 const getAdDetailsSuccess = (adDetails) => ({
   type: ACTION_TYPES.GET_AD_DETAIL_SUCCESS,
   adDetails,
@@ -234,13 +235,13 @@ const getAdDetailsFail = (error) => ({
   type: ACTION_TYPES.GET_AD_DETAIL_FAILURE,
   error,
 });
+
 export const getAdDetails = (AdUri) =>
   async function (dispatch, getState, { APIService }) {
     dispatch(getAdDetailsReq());
     try {
       const response = await APIService.getAdDetails(AdUri);
       dispatch(getAdDetailsSuccess(response.result));
-      return response;
     } catch (error) {
       dispatch(getAdDetailsFail(error));
     }
@@ -249,9 +250,8 @@ export const getAdDetails = (AdUri) =>
 const signUpReq = () => ({
   type: ACTION_TYPES.SIGN_UP_REQUEST,
 });
-const signUpSuccess = (username) => ({
+const signUpSuccess = () => ({
   type: ACTION_TYPES.SIGN_UP_SUCCESS,
-  username,
 });
 const signUpFail = (error) => ({
   type: ACTION_TYPES.SIGN_UP_FAILURE,
@@ -264,8 +264,11 @@ export const signUp = (signUpData) =>
       await APIService.signUp(signUpData);
       dispatch(signUpSuccess());
       // dispatch(showPopUp)
-      alert('cuenta creada ve a /login');
+      alert('Account succesfully created');
+      dispatch(push('/login'));
     } catch (error) {
+      console.log(error);
+      alert('Username or email already taken');
       dispatch(signUpFail(error));
     }
   };

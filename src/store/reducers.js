@@ -44,6 +44,7 @@ export function adDetails(state = initialState.adDetails, action) {
 
     case ACTION_TYPES.GET_AD_DETAIL_SUCCESS:
       return action.adDetails;
+
     default:
       return state;
   }

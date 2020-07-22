@@ -8,18 +8,20 @@
 .Ad button {
   margin: 2.5px 0px;
 }
-
-.Ad .sell,
-.Ad .buy {
-  text-align: right;
-  padding: 2.5px;
+.Ad h2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
+
 .Ad .sell {
   background-color: darkgoldenrod;
+  padding: 5px;
+  border-radius: 5px;
 }
-
 .Ad .buy {
   background-color: plum;
+  padding: 5px;
+  border-radius: 5px;
 }
 .Ad img {
   width: calc(100% - 10px);
@@ -31,5 +33,55 @@
   text-decoration: underline;
 }
 .Ad .publisher {
+  font-size: 0.8rem;
+}
+
+.ListAd td > * {
+  margin: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ListAd h2 {
+  max-width: 50vw;
+}
+.ListAd h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ListAd .action-button {
+  width: 20%;
+  display: inline-block;
+  position: relative;
+  bottom: 18px;
+}
+.ListAd .action-button button {
+  margin: 0;
+  height: 48px;
+  border-radius: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ListAd .sell,
+.ListAd .buy {
+  background-color: darkgoldenrod;
+  width: 80%;
+  display: inline-block;
+  height: 48px;
+  padding: 5px 0px 0px 5px;
+  box-sizing: border-box;
+}
+.ListAd .buy {
+  background-color: plum;
+}
+.ListAd img {
+  max-width: 48px;
+  max-height: 32px;
+}
+
+.ListAd .publisher a {
+  text-decoration: underline;
+}
+.ListAd .publisher {
   font-size: 0.8rem;
 }

@@ -103,13 +103,14 @@ export default function Filter({ initialValue, onSubmit, adsLength }) {
 
       <select defaultValue={tags[0]} onChange={handleInput} name="tag">
         <option key={null} value={''}></option>
-        {tags.map((tag) => {
-          return (
-            <option key={tag} value={tag ? tag : ''}>
-              {tag}
-            </option>
-          );
-        })}
+        {tags.length > 0 &&
+          tags.map((tag) => {
+            return (
+              <option key={tag} value={tag ? tag : ''}>
+                {tag}
+              </option>
+            );
+          })}
       </select>
 
       <button

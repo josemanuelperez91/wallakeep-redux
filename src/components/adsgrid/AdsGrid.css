@@ -1,12 +1,17 @@
 .AdsGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: auto;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   margin: 10px 0px;
   align-items: baseline;
 }
+.AdsGridList {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 @media only screen and (max-width: 542px) {
   .AdsGrid {
     grid-template-columns: 1fr 1fr;

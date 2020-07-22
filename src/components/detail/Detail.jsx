@@ -27,7 +27,11 @@ function Detail({
           <tbody>
             <tr>
               <td rowSpan={3}>
-                <img alt={adDetails.name} src={adDetails.image} />
+                <img
+                  className="detail-img"
+                  alt={adDetails.name}
+                  src={adDetails.image}
+                />
               </td>
               <td colSpan={3}>
                 <h1>{adDetails.name}</h1>
@@ -52,9 +56,10 @@ function Detail({
               <td>
                 <Translate value="AdEditor.tags"></Translate>:
                 <ul>
-                  {adDetails.tags.map((tag) => {
-                    return <li key={tag}>{tag}</li>;
-                  })}
+                  {adDetails.tags.length > 0 &&
+                    adDetails.tags.map((tag) => {
+                      return <li key={tag}>{tag}</li>;
+                    })}
                 </ul>
               </td>
             </tr>

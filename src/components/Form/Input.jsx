@@ -78,10 +78,6 @@ export default function Input({
           multiple={otherProps.multiple}
           required={otherProps.required}
         >
-          <option key={null} disabled="disabled" value="">
-            {otherProps.defaultValue}
-          </option>
-
           {otherProps.availables &&
             otherProps.availables.map((available) => {
               return (

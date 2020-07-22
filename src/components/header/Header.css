@@ -1,0 +1,26 @@
+.Header .logo {
+  display: inline-block;
+  width: 64px;
+  vertical-align: bottom;
+  margin-bottom: 5px;
+}
+@font-face {
+  font-family: barcade;
+  src: url(../../fonts/barcade.otf);
+}
+.Header .appname {
+  font-family: 'barcade';
+  font-size: 4rem;
+  color: white;
+  margin: 5px 0px;
+  text-shadow: 0 0 10px white;
+  display: inline-block;
+}
+.Header {
+  text-align: center;
+}
+@media only screen and (max-width: 410px) {
+  .Header .logo {
+    display: none;
+  }
+}

@@ -18,14 +18,8 @@ export default function Update({
   match: {
     params: { ID },
   },
+  adDetails,
 }) {
-  const onSubmit = (adData) => {
-    updateAd(adData);
-  };
-
-  const adDetails = useSelector((store) => store.adDetails);
-  const tags = useSelector((store) => store.tags);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +30,11 @@ export default function Update({
     dispatch(fetchTags({ all: true }));
   }, [dispatch]);
 
-  const initialValue = { ...adDetails };
+  const onSubmit = (adData) => {
+    updateAd(adData);
+  };
+
+  const tags = useSelector((store) => store.tags);
 
   const onDelete = () => {
     const confirmDelete = window.confirm('Delete this Ad?');
@@ -45,7 +43,6 @@ export default function Update({
       deleteAd();
     }
   };
-
   if (!_.isEmpty(adDetails)) {
     return (
       <div className="Edit">
@@ -53,11 +50,11 @@ export default function Update({
         <h1>
           <Translate value="Update.title"></Translate>
         </h1>
-        <Form onSubmit={onSubmit} initialValue={initialValue}>
+        <Form onSubmit={onSubmit} initialValue={adDetails}>
           <Editor availableTags={tags} />
         </Form>
         <button id="Delete" onClick={onDelete}>
-          <Translate value="Update.deleteButton"></Translate>
+          <Translate value="Update.delete"></Translate>
         </button>
       </div>
     );

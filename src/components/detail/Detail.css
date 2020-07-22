@@ -3,27 +3,22 @@
   max-width: 800px;
   padding: 10px;
 }
-table {
+.Detail table {
   margin: 20px auto 10px auto;
   width: 100%;
 }
-table td {
+.Detail table td {
   border-bottom: 1px solid white;
   padding: 10px;
 }
 
-.Detail img {
+.Detail .detail-img {
   width: 300px;
   margin: 30px auto 0 auto;
   display: block;
   border: 2px solid white;
   border-radius: 5px;
 }
-.Detail h1 {
-  margin: 0px;
-  font-size: 3rem;
-}
-
 #description {
   font-size: 0.8rem;
 }

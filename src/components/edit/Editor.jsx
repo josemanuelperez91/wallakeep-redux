@@ -31,6 +31,7 @@ export default function Editor({ availableTags }) {
       <Input
         otherProps={{
           required: true,
+          max: '999999999',
         }}
         type="number"
         name="price"
@@ -51,25 +52,13 @@ export default function Editor({ availableTags }) {
           multiple: 'multiple',
           required: true,
           availables: availableTags,
-          defaultValue: 'select a tag',
         }}
         name="tags"
       ></Input>
-      <Translate value="AdEditor.TypeofAd" />
+      <Translate value="AdEditor.type" />
       <div>
-        <label>
-          <Translate value="AdEditor.Buy" />
-          <Input
-            name="sale"
-            template="radio"
-            otherProps={{
-              radioValue: false,
-              required: true,
-            }}
-          />
-        </label>
-        <label>
-          <Translate value="AdEditor.Sell" />
+        <label className={'radio-sell'}>
+          <Translate value="AdEditor.sell" />
           <Input
             name="sale"
             otherProps={{
@@ -79,9 +68,20 @@ export default function Editor({ availableTags }) {
             template="radio"
           />
         </label>
+        <label className={'radio-buy'}>
+          <Translate value="AdEditor.buy" />
+          <Input
+            name="sale"
+            template="radio"
+            otherProps={{
+              radioValue: false,
+              required: true,
+            }}
+          />
+        </label>
       </div>
       <Button className="greenButton" type="submit">
-        <Translate value="AdEditor.Submit" />
+        <Translate value="AdEditor.submit" />
       </Button>
     </div>
   );

@@ -4,7 +4,6 @@ import './User.css';
 import AdsGrid from '../adsgrid/AdsGrid';
 import Navbar from '../navbar';
 
-import { Link } from 'react-router-dom';
 import config from '../../config';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -40,14 +39,8 @@ function User({
       <Navbar></Navbar>
       <h1>
         <Translate value="User.title" username={username} />
+        {type === 'private' && <Translate value="User.you" />}
       </h1>
-      {type === 'private' && (
-        <button id="createAd" className="greenButton">
-          <Link to="/create">
-            <Translate value="User.create" />
-          </Link>
-        </button>
-      )}
 
       <AdsGrid ads={ads} type={type}></AdsGrid>
     </div>

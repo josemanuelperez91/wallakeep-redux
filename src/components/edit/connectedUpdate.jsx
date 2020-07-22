@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Update from './Update';
 import { updateAd, deleteAd } from '../../store/actions';
+import { getAdDetails } from '../../store/selectors';
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
@@ -8,5 +9,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     deleteAd: () => dispatch(deleteAd(ownProps.match.params.ID)),
   };
 }
-
-export default connect(null, mapDispatchToProps)(Update);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    adDetails: getAdDetails(state, ownProps.match.params.ID),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Update);

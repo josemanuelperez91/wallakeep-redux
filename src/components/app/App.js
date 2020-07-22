@@ -1,4 +1,5 @@
 import React from 'react';
+import './normalize.css';
 import './App.css';
 import Register from '../register';
 import Login from '../login';

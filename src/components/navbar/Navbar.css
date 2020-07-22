@@ -32,3 +32,11 @@
   float: right;
   margin-left: 20px;
 }
+#new {
+  background-color: seagreen;
+  width: fit-content;
+  color: white;
+  min-width: 100px;
+  float: right;
+  margin-left: 20px;
+}

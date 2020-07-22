@@ -3,17 +3,17 @@
     "title": "Acceso",
     "submit": "Entrar",
     "cancel": "No tengo una cuenta",
-    "usernameInputPlaceholder": "nombre de usuario",
-    "passwordInputPlaceholder": "contraseña"
+    "usernameInput": "nombre de usuario",
+    "passwordInput": "contraseña"
   },
   "Register": {
     "title": "Registro",
     "submit": "Crear cuenta",
     "cancel": "Ya tengo una cuenta",
-    "usernameInputPlaceholder": "nombre de usuario",
-    "passwordInputPlaceholder": "contraseña",
-    "passwordRInputPlaceholder": "repetir contraseña",
-    "emailInputPlaceholder": "correo electrónico"
+    "usernameInput": "nombre de usuario",
+    "passwordInput": "contraseña",
+    "passwordRInput": "repetir contraseña",
+    "emailInput": "correo electrónico"
   },
   "AdEditor": {
     "name": "Nombre",
@@ -22,7 +22,8 @@
     "buy": "Compra",
     "description": "Descripción",
     "type": "Tipo",
-    "price": "Precio"
+    "price": "Precio",
+    "submit": "Enviar"
   },
   "AdFilter": {
     "minPrice": "Precio Mínimo",
@@ -40,11 +41,19 @@
     "sigout": "Cerrar",
     "home": "Inicio",
     "signin": "Entrar",
-    "signup": "Registrarse"
+    "signup": "Registrarse",
+    "new": "Añadir"
   },
   "User": {
     "title": "Anuncios de %{username}",
-    "update": "Actualizar",
-    "create": "Nuevo Anuncio"
+    "update": "Editar/Borrar",
+    "you": " (Tú)"
+  },
+  "Update": {
+    "title": "Editar anuncio",
+    "delete": "Eliminar"
+  },
+  "Create": {
+    "title": "Publicar anuncio"
   }
 }
